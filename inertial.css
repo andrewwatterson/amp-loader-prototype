@@ -31,25 +31,25 @@
 .staged.placeholder .spinner-wrapper svg .spinner-logo {
   opacity: 0;
   transform-origin: 50% 50%;
-  animation: inertial-staged-enter .8s ease-in 1s;
+  animation: inertial-staged-enter 0.8s ease-in 0.6s;
   animation-fill-mode: forwards; }
 .staged.placeholder .spinner-wrapper svg .spinner-logo {
   fill: #aaa;
   animation-timing-function: steps(1); }
 .staged.placeholder .spinner-wrapper svg #spinner-seg-1 {
   transform: rotate(90deg);
-  animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.5s, inertial-seg-1 1.2s linear 3.1s infinite;
+  animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.1s, inertial-seg-1 1.2s linear 2.7s infinite;
   animation-fill-mode: forwards; }
 .staged.placeholder .spinner-wrapper svg #spinner-seg-2 {
   transform: rotate(180deg);
-  animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.5s, inertial-seg-2 1.2s linear 3.1s infinite;
+  animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.1s, inertial-seg-2 1.2s linear 2.7s infinite;
   animation-fill-mode: forwards; }
 .staged.placeholder .spinner-wrapper svg #spinner-seg-3 {
   transform: rotate(270deg);
-  animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.5s, inertial-seg-3 1.2s linear 3.1s infinite;
+  animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.1s, inertial-seg-3 1.2s linear 2.7s infinite;
   animation-fill-mode: forwards; }
 .staged.placeholder .spinner-wrapper svg #spinner-seg-4 {
-  animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.5s;
+  animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.1s;
   animation-fill-mode: forwards; }
 .staged.placeholder .spinner-wrapper svg #solid-circle {
   opacity: 0;
@@ -57,11 +57,11 @@
   fill: #aaa;
   stroke: #aaa;
   stroke-width: 1.5px;
-  animation: inertial-staged-enter 0.8s ease-in 1s, inertial-staged-shrink 0.5s ease-out 1.8s;
+  animation: inertial-staged-enter 0.8s ease-in 0.6s, inertial-staged-shrink 0.5s ease-out 1.4s;
   animation-fill-mode: forwards; }
 
 #twitterStaged.placeholder #twitter-logo {
-  animation: inertial-staged-enter 0.8s steps(1) 1s, inertial-twitter-blue 0.3s ease-in 2.8s;
+  animation: inertial-staged-enter 0.8s steps(1) 0.6s, inertial-twitter-blue 0.3s ease-in 2.8s;
   animation-fill-mode: forwards; }
 
 @keyframes inertial-twitter-blue {
@@ -76,7 +76,7 @@
     transform: scale(1); } }
 #adStaged.placeholder #ad-logo {
   fill: #888;
-  animation: inertial-staged-enter 0.8s steps(1) 1s;
+  animation: inertial-staged-enter 0.8s steps(1) 0.6s;
   animation-fill-mode: forwards; }
 
 @keyframes inertial-seg-1 {

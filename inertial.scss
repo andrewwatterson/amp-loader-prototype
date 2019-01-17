@@ -49,10 +49,18 @@ $spinnerWidth: 1.5px;
   }
 }
 
-$circleEnterTiming: .8s ease-in 1s;
-$circleExitTiming: .5s ease-out 1.8s;
-$inertialFirstTiming: .6s cubic-bezier(.5,0,.8,1) 2.5s;
-$inertialSpinTiming: 1.2s linear 3.1s infinite;
+$initialDelay: .6s;
+$circleEnter: .8s;
+$circleExitDelay: $initialDelay + $circleEnter;
+$circleExit: .5s;
+$inertialFirstDelay: $circleExitDelay + $circleExit + .2s;
+$inertialFirst: .6s;
+$inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
+
+$circleEnterTiming: $circleEnter ease-in $initialDelay;
+$circleExitTiming: $circleExit ease-out $circleExitDelay;
+$inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay;
+$inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
 
 .staged.placeholder {
 
@@ -62,7 +70,7 @@ $inertialSpinTiming: 1.2s linear 3.1s infinite;
     .spinner-logo {
       opacity: 0;
       transform-origin: 50% 50%;
-      animation:  inertial-staged-enter .8s ease-in 1s;
+      animation:  inertial-staged-enter $circleEnterTiming;
       animation-fill-mode: forwards;
     }
 
@@ -114,7 +122,7 @@ $inertialSpinTiming: 1.2s linear 3.1s infinite;
 #twitterStaged.placeholder {
   #twitter-logo {
     animation:
-      inertial-staged-enter .8s steps(1) 1s,
+      inertial-staged-enter $circleEnter steps(1) $initialDelay,
       inertial-twitter-blue .3s ease-in 2.8s;
     animation-fill-mode: forwards;
   }
@@ -133,7 +141,7 @@ $inertialSpinTiming: 1.2s linear 3.1s infinite;
   #ad-logo {
     fill: #888;
     animation:
-      inertial-staged-enter .8s steps(1) 1s;
+      inertial-staged-enter $circleEnter steps(1) $initialDelay;
     animation-fill-mode: forwards;
   }
 }

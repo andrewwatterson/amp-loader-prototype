@@ -104,3 +104,58 @@
     width: 55px;
   }
 }
+
+#twitterPulse.placeholder {
+  $animationTime: 1.2; // 1.2s
+  $curve: cubic-bezier(.5,0,.5,1);
+
+  .birds-nest svg {
+    fill: #1DA1F2;
+    animation: twitter-pulse #{$animationTime}s $curve infinite;
+    animation-fill-mode: forwards;
+  }
+}
+
+#twitterPulseStaged.placeholder {
+  $animationTime: 1.2; // 1.2s
+  $curve: cubic-bezier(.5,0,.5,1);
+
+  .birds-nest svg {
+    opacity: 0;
+    fill: #aaa;
+    animation:
+      twitter-opacity 1s linear 1s,
+      twitter-saturation .3s linear 2.5s,
+      twitter-pulse #{$animationTime}s $curve infinite 2.8s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes twitter-pulse {
+  0% {
+    fill: #1DA1F2;
+    transform: scale(1);
+  }
+
+  50% {
+    fill: #1DA1F2;
+    transform: scale(1.2);
+  }
+
+  100% {
+    fill: #1DA1F2;
+    transform: scale(1);
+  }
+}
+
+@keyframes twitter-opacity {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes twitter-saturation {
+  0% { fill: #aaa; transform: scale(1); }
+  50% { fill: #1DA1F2; transform: scale(1.4); }
+  100% { fill: #1DA1F2; transform: scale(1); }
+}
