@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Helvetica Neue", sans-serif; }
+
+.selector-wrapper {
+  padding: 10px 20px;
+  background-color: #fafafa; }
+  .selector-wrapper:before {
+    content: "Loader Prototype";
+    color: #999;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .2em;
+    margin-right: 5px; }
+
+.spinner-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  flex-wrap: wrap; }
+
+.placeholder {
+  min-height: 240px;
+  width: 320px;
+  background-color: #fafafa;
+  border: 1px solid #dddddd;
+  margin: 20px;
+  position: relative; }
+
+.prototype-wrapper {
+  width: 400px;
+  height: 667px;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; }
+  .prototype-wrapper .top-frame {
+    width: 100%;
+    display: none; }
+  .prototype-wrapper .content-wrapper {
+    position: relative; }
+    .prototype-wrapper .content-wrapper .placeholder,
+    .prototype-wrapper .content-wrapper .content {
+      margin: 0px 40px; }
+    .prototype-wrapper .content-wrapper .content {
+      opacity: 0;
+      width: 320px; }
+      .prototype-wrapper .content-wrapper .content.fadeIn {
+        transition: opacity 200ms ease-in;
+        opacity: 1; }
+    .prototype-wrapper .content-wrapper .placeholder {
+      position: absolute; }
+      .prototype-wrapper .content-wrapper .placeholder.fadeOut {
+        transition: opacity 200ms ease-in;
+        opacity: 0; }
+
+/*# sourceMappingURL=global.css.map */

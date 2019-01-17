@@ -1,0 +1,189 @@
+$circleRadius: 18;
+$strokeLength: 3.142 * 2 * $circleRadius;
+$spinnerWidth: 1.5px;
+
+#inertialSpinner.placeholder,
+.staged.placeholder {
+  .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    transform-origin: 50% 50%;
+    stroke-dasharray: ($strokeLength / 4) ($strokeLength * .75);
+    stroke-dashoffset: $strokeLength * .375;
+  }
+}
+
+#inertialSpinner.placeholder {
+
+  $inertialSpinTiming: 1.2s linear infinite;
+
+  .spinner-wrapper svg {
+
+    #spinner-seg-1 {
+      animation:
+        inertial-seg-1 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-2 {
+      animation:
+        inertial-seg-2 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-3 {
+      animation:
+        inertial-seg-3 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+$circleEnterTiming: .8s ease-in 1s;
+$circleExitTiming: .5s ease-out 1.8s;
+$inertialFirstTiming: .6s cubic-bezier(.5,0,.8,1) 2.5s;
+$inertialSpinTiming: 1.2s linear 3.1s infinite;
+
+.staged.placeholder {
+
+  .spinner-wrapper svg {
+
+    .spinner,
+    .spinner-logo {
+      opacity: 0;
+      transform-origin: 50% 50%;
+      animation:  inertial-staged-enter .8s ease-in 1s;
+      animation-fill-mode: forwards;
+    }
+
+    .spinner-logo {
+      fill: #aaa;
+      animation-timing-function: steps(1);
+    }
+
+    #spinner-seg-1 {
+      transform: rotate(90deg);
+      animation:
+        first-seg-1 $inertialFirstTiming,
+        inertial-seg-1 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-2 {
+      transform: rotate(180deg);
+      animation:
+        first-seg-2 $inertialFirstTiming,
+        inertial-seg-2 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-3 {
+      transform: rotate(270deg);
+      animation:
+        first-seg-3 $inertialFirstTiming,
+        inertial-seg-3 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-4 {
+      animation:
+        first-seg-4 $inertialFirstTiming;
+      animation-fill-mode: forwards;
+    }
+
+    #solid-circle {
+      opacity: 0;
+      transform-origin: 50% 50%;
+      fill: #aaa;
+      stroke: #aaa;
+      stroke-width: $spinnerWidth;
+      animation:  inertial-staged-enter $circleEnterTiming,
+                  inertial-staged-shrink $circleExitTiming;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+#twitterStaged.placeholder {
+  #twitter-logo {
+    animation:
+      inertial-staged-enter .8s steps(1) 1s,
+      inertial-twitter-blue .3s ease-in 2.8s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes inertial-twitter-blue {
+  0%   { fill: #aaa;
+         transform: scale(1); }
+  50%  { fill: #1DA1F2;
+         transform: scale(1.2); }
+  100% { fill: #1DA1F2;
+         transform: scale(1); }
+}
+
+#adStaged.placeholder {
+  #ad-logo {
+    fill: #888;
+    animation:
+      inertial-staged-enter .8s steps(1) 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes inertial-seg-1 {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(90deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes inertial-seg-2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes inertial-seg-3 {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes first-seg-1 {
+  0% { transform: rotate(90deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes first-seg-2 {
+  0% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes first-seg-3 {
+  0% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes first-seg-4 {
+  0% { transform: rotate(0deg); }
+  99% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0; }
+}
+
+@keyframes inertial-staged-enter {
+  0% {  opacity: 0;
+        transform: scale(0); }
+  50% { transform: scale(1); }
+  100% { opacity: 1; }
+}
+
+@keyframes inertial-staged-shrink {
+  0% {  transform: scale(1); }
+  100% { transform: scale(0); }
+}

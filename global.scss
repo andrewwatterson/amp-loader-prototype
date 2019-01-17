@@ -1,0 +1,100 @@
+@mixin flex-column($justify: flex-start, $align: stretch) {
+  @include flex-parent(flex, column, $justify, $align);
+}
+
+@mixin flex-row($justify: space-between, $align: center) {
+  @include flex-parent(flex, row, $justify, $align);
+}
+
+@mixin flex-parent($display: flex, $direction: row, $justify: space-between, $align: center) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin static-child($basis: auto) {
+  flex: 0 0 $basis;
+}
+
+@mixin dynamic-child($basis: auto) {
+  flex: 1 1 $basis;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
+
+.selector-wrapper {
+  padding: 10px 20px;
+  background-color: #fafafa;
+
+  &:before {
+    content: "Loader Prototype";
+    color: #999;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .2em;
+    margin-right: 5px;
+  }
+}
+
+.spinner-wrapper {
+  @include flex-column();
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.placeholder {
+  min-height: 240px;
+  width: 320px;
+  background-color: #fafafa;
+  border: 1px solid #dddddd;
+  margin: 20px;
+  position: relative;
+}
+
+$loaderCrossFade: 200ms;
+
+.prototype-wrapper {
+  width: 400px;
+  height: 667px;
+  box-shadow: 0px 0px 0px 1px rgba(0,0,0,.1);
+  position: relative;
+  overflow: hidden;
+
+  .top-frame {
+    width: 100%;
+    display: none;
+  }
+
+  .content-wrapper {
+    position: relative;
+
+    .placeholder,
+    .content {
+      margin: 0px 40px;
+    }
+
+    .content {
+      opacity: 0;
+      width: 320px;
+
+      &.fadeIn {
+        transition: opacity $loaderCrossFade ease-in;
+        opacity: 1;
+      }
+    }
+
+    .placeholder {
+      position: absolute;
+
+      &.fadeOut {
+        transition: opacity $loaderCrossFade ease-in;
+        opacity: 0;
+      }
+    }
+  }
+}
