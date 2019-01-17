@@ -3,6 +3,11 @@ var defaultPrototype = "dots";
 var defaultSelector = 1;
 
 var prototypes = {
+  blank: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "blank"
+  },
   dots: {
     topFrameId: "twitterTopFrame",
     contentId: "twitterContent",
@@ -53,7 +58,8 @@ var prototypes = {
 var urlParams = new URLSearchParams(window.location.search);
 var timeout = urlParams.get('timeout') || defaultTimeout;
 var prototypeId = urlParams.get('p') || defaultPrototype;
-var showSelector = urlParams.get('s') || defaultSelector;
+var showSelector = defaultSelector;
+if(urlParams.get('s') !== null) { showSelector = Number(urlParams.get('s')); }
 
 function loaderFadeOut(prototype) {
   var loader = document.getElementById(prototype.loaderId);
@@ -83,7 +89,6 @@ function setUpPrototype(prototype) {
 }
 
 window.addEventListener('load', function() {
-
   if(!showSelector) {
     var selector = document.getElementsByClassName('selector-wrapper')[0];
     selector.style.display = "none";

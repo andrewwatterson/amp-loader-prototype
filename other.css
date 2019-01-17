@@ -1,0 +1,72 @@
+#spinner.placeholder .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px; }
+#spinner.placeholder .arc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  fill: none;
+  transform-origin: 50% 50%;
+  animation: 800ms spin linear infinite; }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+#dots.placeholder .i-amphtml-loader {
+  position: absolute;
+  display: block;
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  transform-origin: 50% 50%;
+  white-space: nowrap; }
+#dots.placeholder .i-amphtml-loader .i-amphtml-loader-dot {
+  animation: i-amphtml-loader-dots 2s infinite; }
+#dots.placeholder .i-amphtml-loader-dot {
+  position: relative;
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 2px;
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  will-change: transform; }
+#dots.placeholder .i-amphtml-loader .i-amphtml-loader-dot:nth-child(1) {
+  animation-delay: 0s; }
+#dots.placeholder .i-amphtml-loader .i-amphtml-loader-dot:nth-child(2) {
+  animation-delay: .1s; }
+#dots.placeholder .i-amphtml-loader .i-amphtml-loader-dot:nth-child(3) {
+  animation-delay: .2s; }
+@keyframes i-amphtml-loader-dots {
+  0%, 100% {
+    transform: scale(0.7);
+    background-color: rgba(0, 0, 0, 0.3); }
+  50% {
+    transform: scale(0.8);
+    background-color: rgba(0, 0, 0, 0.5); } }
+#twitterStatic.placeholder svg {
+  fill: #aaa; }
+
+#twitterStatic.placeholder .birds-nest,
+#twitterPulse.placeholder .birds-nest,
+#twitterPulseStaged.placeholder .birds-nest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -27px;
+  margin-top: -27px;
+  height: 55px;
+  width: 55px; }
+
+/*# sourceMappingURL=other.css.map */
