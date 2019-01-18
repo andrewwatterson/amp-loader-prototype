@@ -38,15 +38,32 @@ body {
   }
 
   .pointer-dot {
-    background-color: rgba(0,0,0,.5);
+    background-color: orange;
     height: 40px;
     width: 40px;
     border-radius: 20px;
 
     position: absolute;
-    top: 0px;
-    left: 100px;
+    top: 260px;
+    left: 230px;
+    opacity: .5;
+    box-shadow: inset 0px 0px 0px 4px rgba(0,0,0,.15);
+    animation:
+      pointer-dot-move 800ms ease-in-out 500ms,
+      pointer-click 200ms ease-in-out 1.5s;
+    animation-fill-mode: forwards;
   }
+}
+
+@keyframes pointer-dot-move {
+  0% {transform: translate(0px,0px);}
+  100% {transform: translate(-170px,260px);}
+}
+
+@keyframes pointer-click {
+  0% {transform: translate(-170px,260px) scale(1);}
+  50% {transform: translate(-170px,260px) scale(1.2);}
+  100% {transform: translate(-170px,260px) scale(1);}
 }
 
 .selector-wrapper {
@@ -91,6 +108,8 @@ $loaderCrossFade: 200ms;
     width: 100%;
     display: none;
   }
+
+  .placeholder { display: none; }
 
   .content-wrapper {
     position: relative;

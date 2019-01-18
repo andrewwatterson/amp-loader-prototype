@@ -74,6 +74,19 @@ function contentFadeIn(prototype) {
   replacement.className += " fadeIn";
 }
 
+function setUpPreroll() {
+  let preroll = document.getElementsByClassName('preroll-wrapper')[0];
+
+  preroll.style.display = "block";
+
+  setTimeout(function() {
+    preroll.style.display = "none";
+    setTimeout(function() {
+      setUpPrototype(prototypes[prototypeId]);
+    }, 200);
+  }, 1800);
+}
+
 function setUpPrototype(prototype) {
   hideAllButId('top-frame', prototype.topFrameId);
   hideAllButId('placeholder', prototype.loaderId);
@@ -96,5 +109,6 @@ window.addEventListener('load', function() {
     setUpSelector(prototypes, prototypeId);
   }
 
-  setUpPrototype(prototypes[prototypeId]);
+  setUpPreroll();
+  //setUpPrototype(prototypes[prototypeId]);
 });
