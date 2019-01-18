@@ -27,6 +27,28 @@ body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
+.preroll-wrapper {
+  position: absolute;
+  width: 400px;
+  height: 667px;
+  z-index: 2;
+
+  .preroll {
+    width: 100%;
+  }
+
+  .pointer-dot {
+    background-color: rgba(0,0,0,.5);
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 0px;
+    left: 100px;
+  }
+}
+
 .selector-wrapper {
   padding: 10px 20px;
   background-color: #fafafa;
