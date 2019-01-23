@@ -2,12 +2,13 @@
 
 const telecine = require('../telecine/index.js').telecine;
 
-const PREROLL_TIME = 2000;
+const PREROLL_TIME = 3000;
 const POSTROLL_TIME = 3000;
 
 const timeVariants = [1500, 4500];
+//const timeVariants = [1500];
 
-const baseURL = "file:///Users/andrew/codez/amp-loader-prototype/index.html";
+const baseURL = `file://${__dirname}/index.html`;
 
 const prototypeVariants = [
   "blank",

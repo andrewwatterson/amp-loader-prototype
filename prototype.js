@@ -91,16 +91,16 @@ function setUpPreroll() {
 
   let preroll = document.getElementsByClassName('preroll-wrapper')[0];
 
-  preroll.style.display = "none";
+//  preroll.style.display = "none";
 
-  //preroll.style.display = "block";
+  preroll.style.display = "block";
 
-  // setTimeout(function() {
-  //   preroll.style.display = "none";
-  //   setTimeout(function() {
+  setTimeout(function() {
+    preroll.style.display = "none";
+    setTimeout(function() {
       setUpPrototype(prototypes[prototypeId]);
-  //   }, pageLoad);
-  // }, 2800);
+    }, pageLoad);
+  }, 2800);
 }
 
 function setUpPrototype(prototype) {
