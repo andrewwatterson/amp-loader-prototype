@@ -49,11 +49,11 @@ $spinnerWidth: 1.5px;
   }
 }
 
-$initialDelay: .6s;
+$initialDelay: .4s;
 $circleEnter: .8s;
 $circleExitDelay: $initialDelay + $circleEnter;
-$circleExit: .5s;
-$inertialFirstDelay: $circleExitDelay + $circleExit + .2s;
+$circleExit: .8s;
+$inertialFirstDelay: $circleExitDelay + $circleExit - .6s;
 $inertialFirst: .6s;
 $inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
 
@@ -107,6 +107,7 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
     }
 
     #solid-circle {
+
       opacity: 0;
       transform-origin: 50% 50%;
       fill: #aaa;
@@ -116,14 +117,28 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
                   inertial-staged-shrink $circleExitTiming;
       animation-fill-mode: forwards;
     }
+
+    #mask-circle {
+      opacity: 0;
+      fill: white;
+      transform-origin: 50% 50%;
+      animation:  inertial-staged-enter $circleEnterTiming,
+                  inertial-staged-shrink $circleExitTiming;
+      animation-fill-mode: forwards;
+    }
   }
 }
 
 #twitterStaged.placeholder {
+
+  #intro-circle-twitter-logo {
+    fill: #fafafa;
+  }
+
   #twitter-logo {
     animation:
       inertial-staged-enter $circleEnter steps(1) $initialDelay,
-      inertial-twitter-blue .3s ease-in 2.8s;
+      inertial-twitter-blue .3s ease-in 1.8s;
     animation-fill-mode: forwards;
   }
 }
@@ -138,6 +153,11 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
 }
 
 #adStaged.placeholder {
+
+  #intro-circle-ad-logo {
+    fill: #fafafa;
+  }
+
   #ad-logo {
     fill: #888;
     animation:
@@ -191,7 +211,12 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
   100% { opacity: 1; }
 }
 
+// @keyframes inertial-staged-shrink {
+//   0% {  transform: scale(1); }
+//   100% { transform: scale(0); }
+// }
+
 @keyframes inertial-staged-shrink {
-  0% {  transform: scale(1); }
-  100% { transform: scale(0); }
+  0% {  opacity: 1; }
+  100% { opacity: 0; }
 }

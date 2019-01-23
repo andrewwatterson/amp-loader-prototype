@@ -20,7 +20,7 @@ body {
     left: 230px;
     opacity: .5;
     box-shadow: inset 0px 0px 0px 4px rgba(0, 0, 0, 0.15);
-    animation: pointer-dot-move 800ms ease-in-out 500ms, pointer-click 200ms ease-in-out 1.5s;
+    animation: pointer-dot-move 800ms ease-in-out 1.5s, pointer-click 200ms ease-in-out 2.5s;
     animation-fill-mode: forwards; }
 
 @keyframes pointer-dot-move {

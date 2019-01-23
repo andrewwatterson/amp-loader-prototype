@@ -61,6 +61,9 @@ var prototypeId = urlParams.get('p') || defaultPrototype;
 var showSelector = defaultSelector;
 if(urlParams.get('s') !== null) { showSelector = Number(urlParams.get('s')); }
 
+var pageLoad = 200;
+var actualTimeout = timeout - pageLoad;
+
 function loaderFadeOut(prototype) {
   var loader = document.getElementById(prototype.loaderId);
   loader.addEventListener('transitionend', function(evt) {
@@ -74,23 +77,36 @@ function contentFadeIn(prototype) {
   replacement.className += " fadeIn";
 }
 
+function resetPrototype() {
+  hideAllButId('content', '');
+  hideAllButId('top-frame', '');
+  hideAllButId('placeholder', '');
+
+  removeClassFromAll('fadeOut');
+  removeClassFromAll('fadeIn');
+}
+
 function setUpPreroll() {
+  resetPrototype();
+
   let preroll = document.getElementsByClassName('preroll-wrapper')[0];
 
-  preroll.style.display = "block";
+  preroll.style.display = "none";
 
-  setTimeout(function() {
-    preroll.style.display = "none";
-    setTimeout(function() {
+  //preroll.style.display = "block";
+
+  // setTimeout(function() {
+  //   preroll.style.display = "none";
+  //   setTimeout(function() {
       setUpPrototype(prototypes[prototypeId]);
-    }, 200);
-  }, 1800);
+  //   }, pageLoad);
+  // }, 2800);
 }
 
 function setUpPrototype(prototype) {
+  hideAllButId('content', prototype.contentId);
   hideAllButId('top-frame', prototype.topFrameId);
   hideAllButId('placeholder', prototype.loaderId);
-  hideAllButId('content', prototype.contentId);
 
   removeClassFromAll('fadeOut');
   removeClassFromAll('fadeIn');
@@ -98,7 +114,7 @@ function setUpPrototype(prototype) {
   setTimeout(() => {
     loaderFadeOut(prototype);
     contentFadeIn(prototype);
-  }, timeout);
+  }, actualTimeout);
 }
 
 window.addEventListener('load', function() {
