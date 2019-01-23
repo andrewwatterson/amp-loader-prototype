@@ -59,7 +59,8 @@
   stroke-width: 1.5px;
   animation: inertial-staged-enter 0.8s ease-in 0.4s, inertial-staged-shrink 0.8s ease-out 1.2s;
   animation-fill-mode: forwards; }
-.staged.placeholder .spinner-wrapper svg #mask-circle {
+.staged.placeholder .spinner-wrapper svg #twitter-mask-circle,
+.staged.placeholder .spinner-wrapper svg #ad-mask-circle {
   opacity: 0;
   fill: white;
   transform-origin: 50% 50%;

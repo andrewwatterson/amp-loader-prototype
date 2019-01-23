@@ -118,7 +118,8 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
       animation-fill-mode: forwards;
     }
 
-    #mask-circle {
+    #twitter-mask-circle,
+    #ad-mask-circle {
       opacity: 0;
       fill: white;
       transform-origin: 50% 50%;
