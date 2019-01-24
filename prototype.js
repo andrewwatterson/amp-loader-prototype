@@ -13,6 +13,11 @@ var prototypes = {
     contentId: "twitterContent",
     loaderId: "dots"
   },
+  ampAd: {
+    topFrameId: "twitterTopFrame",
+    contentId: "adContent",
+    loaderId: "ampAd"
+  },
   spinner: {
     topFrameId: "twitterTopFrame",
     contentId: "twitterContent",

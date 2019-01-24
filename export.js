@@ -20,7 +20,8 @@ const prototypeVariants = [
   "adStaged",
   "twitterStatic",
   "twitterPulse",
-  "twitterPulseStaged"
+  "twitterPulseStaged",
+  "ampAd"
 ];
 
 let telecineOptions = {
