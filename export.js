@@ -26,7 +26,8 @@ const prototypeVariants = [
 
 let telecineOptions = {
   height: 667,
-  width: 400
+  width: 400,
+  loop: true
 };
 
 let doExport = async () => {
