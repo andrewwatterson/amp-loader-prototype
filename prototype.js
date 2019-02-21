@@ -1,6 +1,7 @@
 var defaultTimeout = 3000;
 var defaultPrototype = "dots";
 var defaultSelector = 1;
+var defaultPreroll = 0;
 
 var prototypes = {
   blank: {
@@ -63,8 +64,12 @@ var prototypes = {
 var urlParams = new URLSearchParams(window.location.search);
 var timeout = urlParams.get('timeout') || defaultTimeout;
 var prototypeId = urlParams.get('p') || defaultPrototype;
+
 var showSelector = defaultSelector;
 if(urlParams.get('s') !== null) { showSelector = Number(urlParams.get('s')); }
+
+var showPreroll = defaultPreroll;
+if(urlParams.get('preroll') !== null) { showPreroll = Number(urlParams.get('preroll')); }
 
 var pageLoad = 200;
 var actualTimeout = timeout - pageLoad;
@@ -130,6 +135,5 @@ window.addEventListener('load', function() {
     setUpSelector(prototypes, prototypeId);
   }
 
-  setUpPreroll();
-  //setUpPrototype(prototypes[prototypeId]);
+  showPreroll ? setUpPreroll() : setUpPrototype(prototypes[prototypeId]);
 });

@@ -7,7 +7,8 @@ body {
   position: absolute;
   width: 400px;
   height: 667px;
-  z-index: 2; }
+  z-index: 2;
+  display: none; }
   .preroll-wrapper .preroll {
     width: 100%; }
   .preroll-wrapper .pointer-dot {
