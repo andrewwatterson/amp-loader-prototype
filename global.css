@@ -63,6 +63,9 @@ body {
   margin: 20px;
   position: relative; }
 
+.img-placeholder {
+  background-image: url("./images/img-placeholder.png"); }
+
 .prototype-wrapper {
   width: 400px;
   height: 667px;

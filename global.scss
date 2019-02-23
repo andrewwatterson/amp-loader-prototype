@@ -96,6 +96,10 @@ body {
   position: relative;
 }
 
+.img-placeholder {
+  background-image: url('./images/img-placeholder.png');
+}
+
 $loaderCrossFade: 200ms;
 
 .prototype-wrapper {

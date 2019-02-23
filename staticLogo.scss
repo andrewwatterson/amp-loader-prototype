@@ -1,4 +1,5 @@
 $viewboxSize: 48px;
+$imgPlaceholderViewbox: 72px;
 $circleRadius: 22;
 $strokeLength: 3.142 * 2 * $circleRadius;
 $spinnerWidth: 1.5px;
@@ -9,14 +10,17 @@ $spinnerWidth: 1.5px;
 
 $initialDelay: .6s;
 $logoEnter: .8s;
-$circleEnter: .8s;
-$circleEnterDelay: $initialDelay + $logoEnter + .4s;
-$inertialFirstDelay: $circleEnterDelay + $circleEnter;
+$defaultLogoExit: .8s;
+$spinnerEnter: .8s;
+$spinnerEnterDelay: $initialDelay + $logoEnter + .4s;
+$inertialFirstDelay: $spinnerEnterDelay + $spinnerEnter + .2s;
+$defaultLogoExitDelay: $spinnerEnterDelay;
 $inertialFirst: .6s;
 $inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
 
 $logoEnterTiming: $logoEnter ease-in $initialDelay;
-$circleEnterTiming: $circleEnter ease-in $circleEnterDelay;
+$defaultLogoExitTiming: $defaultLogoExit ease-out $defaultLogoExitDelay;
+$spinnerEnterTiming: $spinnerEnter ease-in $spinnerEnterDelay;
 $inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay;
 $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
 
@@ -43,6 +47,47 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
     stroke-dasharray: ($strokeLength / 4) ($strokeLength * .75);
     stroke-dashoffset: $strokeLength * .375;
   }
+
+  .solid-circle {
+
+    opacity: 0;
+    transform-origin: 50% 50%;
+    fill: #aaa;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    animation:  default-logo-enter $logoEnterTiming,
+                default-logo-exit $defaultLogoExitTiming;
+    animation-fill-mode: forwards;
+  }
+
+  .fader-circle {
+    opacity: 0;
+    animation: fade-in $logoEnterTiming;
+    animation-fill-mode: forwards;
+  }
+}
+
+.staticLogo.placeholder.img-placeholder {
+
+  .spinner-wrapper {
+    margin-left: -1 * ($imgPlaceholderViewbox / 2);
+    margin-top: -1 * ($imgPlaceholderViewbox / 2);
+    width: $imgPlaceholderViewbox;
+    height: $imgPlaceholderViewbox;
+  }
+
+  .solid-circle {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    fill: rgba(0,0,0,.6);
+    stroke: none;
+    animation:  default-logo-enter $logoEnterTiming;
+    animation-fill-mode: forwards;
+  }
+
+  .spinner-seg {
+    stroke: #fafafa;
+  }
 }
 
 .staticLogo.placeholder {
@@ -59,7 +104,7 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
     .spinner {
       opacity: 0;
       transform-origin: 50% 50%;
-      animation: fade-in $circleEnterTiming;
+      animation: fade-in $spinnerEnterTiming;
       animation-fill-mode: forwards;
     }
 
@@ -104,4 +149,23 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
   .spinner-seg {
     stroke: #E60019;
   }
+}
+
+#staticLogoAd.placeholder {
+
+  .spinner-logo {
+    fill: #888;
+  }
+}
+
+@keyframes default-logo-enter {
+  0% {  opacity: 0;
+        transform: scale(0); }
+  50% { transform: scale(1); }
+  100% { opacity: 1; }
+}
+
+@keyframes default-logo-exit {
+  0% {  opacity: 1; }
+  100% { opacity: 0; }
 }

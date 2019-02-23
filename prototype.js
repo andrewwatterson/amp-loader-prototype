@@ -14,6 +14,21 @@ var prototypes = {
     contentId: "twitterContent",
     loaderId: "staticLogoTwitter"
   },
+  staticLogoDefault: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "staticLogoDefault"
+  },
+  imagePlaceholderDefault: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "imagePlaceholderDefault"
+  },
+  staticLogoAd: {
+    topFrameId: "twitterTopFrame",
+    contentId: "adContent",
+    loaderId: "staticLogoAd"
+  },
   logoOnlyInstagram: {
     topFrameId: "twitterTopFrame",
     contentId: "twitterContent",

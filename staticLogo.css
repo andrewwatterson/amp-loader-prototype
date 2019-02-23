@@ -19,6 +19,33 @@
     transform-origin: 50% 50%;
     stroke-dasharray: 34.562 103.686;
     stroke-dashoffset: 51.843; }
+  .staticLogo.placeholder .solid-circle {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    fill: #aaa;
+    stroke: #aaa;
+    stroke-width: 1.5px;
+    animation: default-logo-enter 0.8s ease-in 0.6s, default-logo-exit 0.8s ease-out 1.8s;
+    animation-fill-mode: forwards; }
+  .staticLogo.placeholder .fader-circle {
+    opacity: 0;
+    animation: fade-in 0.8s ease-in 0.6s;
+    animation-fill-mode: forwards; }
+
+.staticLogo.placeholder.img-placeholder .spinner-wrapper {
+  margin-left: -36px;
+  margin-top: -36px;
+  width: 72px;
+  height: 72px; }
+.staticLogo.placeholder.img-placeholder .solid-circle {
+  opacity: 0;
+  transform-origin: 50% 50%;
+  fill: rgba(0, 0, 0, 0.6);
+  stroke: none;
+  animation: default-logo-enter 0.8s ease-in 0.6s;
+  animation-fill-mode: forwards; }
+.staticLogo.placeholder.img-placeholder .spinner-seg {
+  stroke: #fafafa; }
 
 .staticLogo.placeholder .spinner-wrapper svg .spinner-logo {
   opacity: 0;
@@ -32,18 +59,18 @@
   animation-fill-mode: forwards; }
 .staticLogo.placeholder .spinner-wrapper svg #spinner-seg-1 {
   transform: rotate(90deg);
-  animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.6s, inertial-seg-1 1.2s linear 3.2s infinite;
+  animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.8s, inertial-seg-1 1.2s linear 3.4s infinite;
   animation-fill-mode: forwards; }
 .staticLogo.placeholder .spinner-wrapper svg #spinner-seg-2 {
   transform: rotate(180deg);
-  animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.6s, inertial-seg-2 1.2s linear 3.2s infinite;
+  animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.8s, inertial-seg-2 1.2s linear 3.4s infinite;
   animation-fill-mode: forwards; }
 .staticLogo.placeholder .spinner-wrapper svg #spinner-seg-3 {
   transform: rotate(270deg);
-  animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.6s, inertial-seg-3 1.2s linear 3.2s infinite;
+  animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.8s, inertial-seg-3 1.2s linear 3.4s infinite;
   animation-fill-mode: forwards; }
 .staticLogo.placeholder .spinner-wrapper svg #spinner-seg-4 {
-  animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.6s;
+  animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 2.8s;
   animation-fill-mode: forwards; }
 
 #staticLogoTwitter.placeholder .spinner-seg {
@@ -51,5 +78,22 @@
 
 #staticLogoPinterest.placeholder .spinner-seg {
   stroke: #E60019; }
+
+#staticLogoAd.placeholder .spinner-logo {
+  fill: #888; }
+
+@keyframes default-logo-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  50% {
+    transform: scale(1); }
+  100% {
+    opacity: 1; } }
+@keyframes default-logo-exit {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 /*# sourceMappingURL=staticLogo.css.map */
