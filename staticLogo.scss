@@ -1,0 +1,107 @@
+$viewboxSize: 48px;
+$circleRadius: 22;
+$strokeLength: 3.142 * 2 * $circleRadius;
+$spinnerWidth: 1.5px;
+
+/**************************/
+/*    Animation Timing    */
+/**************************/
+
+$initialDelay: .6s;
+$logoEnter: .8s;
+$circleEnter: .8s;
+$circleEnterDelay: $initialDelay + $logoEnter + .4s;
+$inertialFirstDelay: $circleEnterDelay + $circleEnter;
+$inertialFirst: .6s;
+$inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
+
+$logoEnterTiming: $logoEnter ease-in $initialDelay;
+$circleEnterTiming: $circleEnter ease-in $circleEnterDelay;
+$inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay;
+$inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
+
+.staticLogo.placeholder {
+
+  border: none;
+
+  .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1 * ($viewboxSize / 2);
+    margin-top: -1 * ($viewboxSize / 2);
+    width: $viewboxSize;
+    height: $viewboxSize;
+  }
+
+  .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    transform-origin: 50% 50%;
+    stroke-dasharray: ($strokeLength / 4) ($strokeLength * .75);
+    stroke-dashoffset: $strokeLength * .375;
+  }
+}
+
+.staticLogo.placeholder {
+
+  .spinner-wrapper svg {
+
+    .spinner-logo {
+      opacity: 0;
+      transform-origin: 50% 50%;
+      animation: fade-in $logoEnterTiming;
+      animation-fill-mode: forwards;
+    }
+
+    .spinner {
+      opacity: 0;
+      transform-origin: 50% 50%;
+      animation: fade-in $circleEnterTiming;
+      animation-fill-mode: forwards;
+    }
+
+    #spinner-seg-1 {
+      transform: rotate(90deg);
+      animation:
+        first-seg-1 $inertialFirstTiming,
+        inertial-seg-1 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-2 {
+      transform: rotate(180deg);
+      animation:
+        first-seg-2 $inertialFirstTiming,
+        inertial-seg-2 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-3 {
+      transform: rotate(270deg);
+      animation:
+        first-seg-3 $inertialFirstTiming,
+        inertial-seg-3 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-4 {
+      animation:
+        first-seg-4 $inertialFirstTiming;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+#staticLogoTwitter.placeholder {
+
+  .spinner-seg {
+    stroke: #1DA1F2;
+  }
+}
+
+#staticLogoPinterest.placeholder {
+
+  .spinner-seg {
+    stroke: #E60019;
+  }
+}

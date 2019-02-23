@@ -1,0 +1,95 @@
+/**************************/
+/*    Animation Timing    */
+/**************************/
+.reverse.placeholder {
+  border: none; }
+  .reverse.placeholder .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -24px;
+    margin-top: -24px;
+    width: 48px;
+    height: 48px; }
+  .reverse.placeholder .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: 1.5px;
+    transform-origin: 50% 50%;
+    stroke-dasharray: 34.562 103.686;
+    stroke-dashoffset: 51.843; }
+
+.reverse.placeholder .spinner-wrapper svg .spinner,
+.reverse.placeholder .spinner-wrapper svg .spinner-logo {
+  opacity: 0;
+  transform-origin: 50% 50%;
+  animation: inertial-staged-enter 0.8s ease-in 0.4s;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg .spinner-logo {
+  fill: #aaa;
+  animation-timing-function: steps(1); }
+.reverse.placeholder .spinner-wrapper svg #spinner-seg-1 {
+  transform: rotate(90deg);
+  animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.4s, inertial-seg-1 1.2s linear 2s infinite;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg #spinner-seg-2 {
+  transform: rotate(180deg);
+  animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.4s, inertial-seg-2 1.2s linear 2s infinite;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg #spinner-seg-3 {
+  transform: rotate(270deg);
+  animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.4s, inertial-seg-3 1.2s linear 2s infinite;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg #spinner-seg-4 {
+  animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.4s;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg #solid-circle {
+  opacity: 0;
+  transform-origin: 50% 50%;
+  fill: #aaa;
+  stroke: #aaa;
+  stroke-width: 1.5px;
+  animation: inertial-staged-enter 0.8s ease-in 0.4s, inertial-staged-shrink 0.8s ease-out 1.2s;
+  animation-fill-mode: forwards; }
+.reverse.placeholder .spinner-wrapper svg #mask-circle {
+  opacity: 0;
+  fill: white;
+  transform-origin: 50% 50%;
+  animation: inertial-staged-enter 0.6s ease-in 0.4s, inertial-staged-shrink 0.8s ease-out 1.2s;
+  animation-fill-mode: forwards; }
+
+#bigInstagram.placeholder .spinner-wrapper {
+  margin-left: -45px;
+  margin-top: -45px;
+  width: 90px;
+  height: 90px; }
+  #bigInstagram.placeholder .spinner-wrapper .spinner-seg {
+    stroke-dasharray: 66.7675 200.3025;
+    stroke-dashoffset: 100.15125; }
+#bigInstagram.placeholder #intro-ig-logo {
+  fill: #fafafa; }
+#bigInstagram.placeholder #ig-logo {
+  fill: #888;
+  animation: inertial-staged-enter 0.8s steps(1) 0.4s;
+  animation-fill-mode: forwards; }
+
+#reverseFacebook.placeholder .spinner-seg {
+  stroke: #4267B2; }
+#reverseFacebook.placeholder #solid-circle {
+  fill: #4267B2;
+  stroke: #4267B2; }
+
+#reverseTwitter.placeholder .spinner-seg {
+  stroke: #1DA1F2; }
+#reverseTwitter.placeholder #solid-circle {
+  fill: #1DA1F2;
+  stroke: #1DA1F2; }
+
+#reversePinterest.placeholder .spinner-seg {
+  stroke: #E60019; }
+#reversePinterest.placeholder #solid-circle {
+  fill: #E60019;
+  stroke: #E60019; }
+
+/*# sourceMappingURL=reverse.css.map */

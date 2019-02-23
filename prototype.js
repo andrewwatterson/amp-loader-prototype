@@ -4,6 +4,51 @@ var defaultSelector = 1;
 var defaultPreroll = 0;
 
 var prototypes = {
+  staticLogoPinterest: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "staticLogoPinterest"
+  },
+  staticLogoTwitter: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "staticLogoTwitter"
+  },
+  logoOnlyInstagram: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "logoOnlyInstagram"
+  },
+  logoOnlyPinterest: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "logoOnlyPinterest"
+  },
+  logoOnlyTwitter: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "logoOnlyTwitter"
+  },
+  bigInstagram: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "bigInstagram"
+  },
+  reverseTwitter: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "reverseTwitter"
+  },
+  reverseFacebook: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "reverseFacebook"
+  },
+  reversePinterest: {
+    topFrameId: "twitterTopFrame",
+    contentId: "twitterContent",
+    loaderId: "reversePinterest"
+  },
   blank: {
     topFrameId: "twitterTopFrame",
     contentId: "twitterContent",

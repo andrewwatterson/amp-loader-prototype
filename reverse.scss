@@ -1,0 +1,177 @@
+$viewboxSize: 48px;
+$circleRadius: 22;
+$strokeLength: 3.142 * 2 * $circleRadius;
+$spinnerWidth: 1.5px;
+
+/**************************/
+/*    Animation Timing    */
+/**************************/
+
+$initialDelay: .4s;
+$circleEnter: .8s;
+$circleExitDelay: $initialDelay + $circleEnter;
+$circleExit: .8s;
+$inertialFirstDelay: $circleExitDelay + $circleExit - .6s;
+$inertialFirst: .6s;
+$inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
+
+$circleEnterTiming: $circleEnter ease-in $initialDelay;
+$maskCircleEnterTiming: ($circleEnter * .75) ease-in $initialDelay;
+$circleExitTiming: $circleExit ease-out $circleExitDelay;
+$inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay;
+$inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
+
+.reverse.placeholder {
+
+  border: none;
+
+  .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1 * ($viewboxSize / 2);
+    margin-top: -1 * ($viewboxSize / 2);
+    width: $viewboxSize;
+    height: $viewboxSize;
+  }
+
+  .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    transform-origin: 50% 50%;
+    stroke-dasharray: ($strokeLength / 4) ($strokeLength * .75);
+    stroke-dashoffset: $strokeLength * .375;
+  }
+}
+
+.reverse.placeholder {
+
+  .spinner-wrapper svg {
+
+    .spinner,
+    .spinner-logo {
+      opacity: 0;
+      transform-origin: 50% 50%;
+      animation:  inertial-staged-enter $circleEnterTiming;
+      animation-fill-mode: forwards;
+    }
+
+    .spinner-logo {
+      fill: #aaa;
+      animation-timing-function: steps(1);
+    }
+
+    #spinner-seg-1 {
+      transform: rotate(90deg);
+      animation:
+        first-seg-1 $inertialFirstTiming,
+        inertial-seg-1 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-2 {
+      transform: rotate(180deg);
+      animation:
+        first-seg-2 $inertialFirstTiming,
+        inertial-seg-2 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-3 {
+      transform: rotate(270deg);
+      animation:
+        first-seg-3 $inertialFirstTiming,
+        inertial-seg-3 $inertialSpinTiming;
+      animation-fill-mode: forwards;
+    }
+    #spinner-seg-4 {
+      animation:
+        first-seg-4 $inertialFirstTiming;
+      animation-fill-mode: forwards;
+    }
+
+    #solid-circle {
+
+      opacity: 0;
+      transform-origin: 50% 50%;
+      fill: #aaa;
+      stroke: #aaa;
+      stroke-width: $spinnerWidth;
+      animation:  inertial-staged-enter $circleEnterTiming,
+                  inertial-staged-shrink $circleExitTiming;
+      animation-fill-mode: forwards;
+    }
+
+    #mask-circle {
+      opacity: 0;
+      fill: white;
+      transform-origin: 50% 50%;
+      animation:  inertial-staged-enter $maskCircleEnterTiming,
+                  inertial-staged-shrink $circleExitTiming;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+$bigInstagramSize: 90px;
+$IGstrokeLength: 3.142 * 2 * 42.5;
+#bigInstagram.placeholder {
+  .spinner-wrapper {
+    margin-left: -1 * ($bigInstagramSize / 2);
+    margin-top: -1 * ($bigInstagramSize / 2);
+    width: $bigInstagramSize;
+    height: $bigInstagramSize;
+
+    .spinner-seg {
+      stroke-dasharray: ($IGstrokeLength / 4) ($IGstrokeLength * .75);
+      stroke-dashoffset: $IGstrokeLength * .375;
+    }
+  }
+
+  #intro-ig-logo {
+    fill: #fafafa;
+  }
+
+  #ig-logo {
+    fill: #888;
+    animation:
+      inertial-staged-enter $circleEnter steps(1) $initialDelay;
+    animation-fill-mode: forwards;
+  }
+}
+
+#reverseFacebook.placeholder {
+
+  .spinner-seg {
+    stroke: #4267B2;
+  }
+
+  #solid-circle {
+    fill: #4267B2;
+    stroke: #4267B2;
+  }
+}
+
+#reverseTwitter.placeholder {
+
+  .spinner-seg {
+    stroke: #1DA1F2;
+  }
+
+  #solid-circle {
+    fill: #1DA1F2;
+    stroke: #1DA1F2;
+  }
+}
+
+#reversePinterest.placeholder {
+
+  .spinner-seg {
+    stroke: #E60019;
+  }
+
+  #solid-circle {
+    fill: #E60019;
+    stroke: #E60019;
+  }
+}

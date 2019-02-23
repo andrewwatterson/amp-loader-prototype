@@ -1,7 +1,6 @@
 function reactToSelector(selector) {
   prototypeId = selector.value;
-  //setUpPrototype(prototypes[prototypeId]);
-  setUpPreroll();
+  showPreroll ? setUpPreroll() : setUpPrototype(prototypes[prototypeId]);
 }
 
 function hideAllButId(className, id) {
