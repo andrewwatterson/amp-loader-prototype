@@ -21,7 +21,8 @@
         height: 60px;
         background-color: #fafafa;
         margin-right: 16px;
-        position: relative; }
+        position: relative;
+        background-size: cover; }
       .prototype-wrapper .list-wrapper .list-content-wrapper .list-item .list-item-name {
         font-weight: bold;
         line-height: 60px;
@@ -49,12 +50,39 @@
     margin-top: -24px;
     width: 48px;
     height: 48px; }
+  .placeholder.smallPulse .spinner {
+    opacity: 0;
+    animation: fade-in .4s ease-in .8s;
+    animation-fill-mode: forwards; }
+  .placeholder.smallPulse .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: 1.5px;
+    transform-origin: 50% 50%;
+    stroke-dasharray: 12.568 37.704;
+    stroke-dashoffset: 18.852; }
   .placeholder.smallPulse .solid-circle {
     opacity: 0;
     fill: #aaa;
-    animation: small-circle-enter .4s ease-in .8s, small-pulse .8s linear 2s infinite;
+    animation: small-circle-enter .05s ease-in .8s, small-pulse .8s linear .8s infinite;
     animation-fill-mode: forwards;
-    transform-origin: 50% 50%; }
+    transform-origin: 50% 50%;
+    display: none; }
+  .placeholder.smallPulse #spinner-seg-1 {
+    transform: rotate(90deg);
+    animation: first-seg-1 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.2s, inertial-seg-1 1.2s linear 1.8s infinite;
+    animation-fill-mode: forwards; }
+  .placeholder.smallPulse #spinner-seg-2 {
+    transform: rotate(180deg);
+    animation: first-seg-2 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.2s, inertial-seg-2 1.2s linear 1.8s infinite;
+    animation-fill-mode: forwards; }
+  .placeholder.smallPulse #spinner-seg-3 {
+    transform: rotate(270deg);
+    animation: first-seg-3 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.2s, inertial-seg-3 1.2s linear 1.8s infinite;
+    animation-fill-mode: forwards; }
+  .placeholder.smallPulse #spinner-seg-4 {
+    animation: first-seg-4 0.6s cubic-bezier(0.5, 0, 0.8, 1) 1.2s;
+    animation-fill-mode: forwards; }
 
 @keyframes small-circle-enter {
   0% {

@@ -17,8 +17,11 @@
 
           var foo = document.querySelectorAll('.list-item-img');
 
+          var bgImages = ['apple.jpg', 'banana.jpg', 'melon.jpg', 'kumquat.jpg', 'pickle.jpg', 'fruitsalad.jpg', 'passionfruit.jpg'];
+
           for(var i = 0; i < foo.length; i++) {
-            var randomTimeout = Math.floor(Math.random() * 15) * 20;
+            //var randomTimeout = Math.floor(Math.random() * 15) * 20;
+            var randomTimeout = 0;
 
             ((eye) => {
               setTimeout(() => {
@@ -26,14 +29,28 @@
                   <div class="placeholder smallPulse">
                     <div class="spinner-wrapper">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                        <g class="spinner">
+                          <circle class="spinner-seg" id="spinner-seg-1" cx="24" cy="24" r="8" />
+                          <circle class="spinner-seg" id="spinner-seg-2" cx="24" cy="24" r="8" />
+                          <circle class="spinner-seg" id="spinner-seg-3" cx="24" cy="24" r="8" />
+                          <circle class="spinner-seg" id="spinner-seg-4" cx="24" cy="24" r="8" />
+                        </g>
                         <circle class="solid-circle" cx="24" cy="24" r="8" />
                       </svg>
                     </div>
                   </div>`;
+
+                foo[eye].style.backgroundImage = 'url(\'./images/'+bgImages[eye]+'\')';
+
+                var randomResolve = Math.floor(Math.random() * 15) * 200;
+
+                setTimeout(() => {
+                  foo[eye].innerHTML = '';
+                }, randomResolve);
               },randomTimeout);
             })(i)
           }
-        }, 1500);
+        }, 3500);
       });
     </script>
 

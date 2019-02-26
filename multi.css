@@ -1,0 +1,23 @@
+.prototype-wrapper .placeholder {
+  display: block;
+  margin: 0 auto; }
+
+.iabAd {
+  background-color: #fafafa;
+  height: 50px;
+  width: 320px;
+  margin: 10px auto; }
+  .iabAd #staticLogoAd.placeholder {
+    margin: 0px;
+    min-height: 50px; }
+
+h1 {
+  padding: 20px; }
+
+.list.placeholder {
+  height: 410px !important; }
+
+.list-item {
+  margin: 0px 20px; }
+
+/*# sourceMappingURL=multi.css.map */

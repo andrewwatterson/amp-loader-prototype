@@ -49,6 +49,7 @@
         background-color: #fafafa;
         margin-right: 16px;
         position: relative;
+        background-size: cover;
       }
 
       .list-item-name {
@@ -89,14 +90,64 @@ $viewboxSize: 48px;
     height: $viewboxSize;
   }
 
+  $circleRadius: 8;
+  $strokeLength: 3.142 * 2 * $circleRadius;
+  $spinnerWidth: 1.5px;
+
+  .spinner {
+    opacity: 0;
+    animation: fade-in .4s ease-in .8s;
+    animation-fill-mode: forwards;
+  }
+
+  .spinner-seg {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    transform-origin: 50% 50%;
+    stroke-dasharray: ($strokeLength / 4) ($strokeLength * .75);
+    stroke-dashoffset: $strokeLength * .375;
+  }
+
   .solid-circle {
     opacity: 0;
     fill: #aaa;
     animation:
-      small-circle-enter .4s ease-in .8s,
-      small-pulse .8s linear 2s infinite;
+      small-circle-enter .05s ease-in .8s,
+      small-pulse .8s linear .8s infinite;
     animation-fill-mode: forwards;
     transform-origin: 50% 50%;
+    display: none;
+  }
+
+  $inertialFirstTiming: .6s cubic-bezier(.5,0,.8,1) 1.2s;
+  $inertialSpinTiming: 1.2s linear 1.8s infinite;
+
+  #spinner-seg-1 {
+    transform: rotate(90deg);
+    animation:
+      first-seg-1 $inertialFirstTiming,
+      inertial-seg-1 $inertialSpinTiming;
+    animation-fill-mode: forwards;
+  }
+  #spinner-seg-2 {
+    transform: rotate(180deg);
+    animation:
+      first-seg-2 $inertialFirstTiming,
+      inertial-seg-2 $inertialSpinTiming;
+    animation-fill-mode: forwards;
+  }
+  #spinner-seg-3 {
+    transform: rotate(270deg);
+    animation:
+      first-seg-3 $inertialFirstTiming,
+      inertial-seg-3 $inertialSpinTiming;
+    animation-fill-mode: forwards;
+  }
+  #spinner-seg-4 {
+    animation:
+      first-seg-4 $inertialFirstTiming;
+    animation-fill-mode: forwards;
   }
 }
 
