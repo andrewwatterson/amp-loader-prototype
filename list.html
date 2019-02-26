@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./list.css" />
+    <link rel="stylesheet" href="./inertial.css" />
+    <link rel="stylesheet" href="./reverse.css" />
+    <link rel="stylesheet" href="./logoOnly.css" />
+    <link rel="stylesheet" href="./staticLogo.css" />
+    <link rel="stylesheet" href="./other.css" />
+
+    <script type="text/javascript">
+
+      window.addEventListener('load', function() {
+        setTimeout(() => {
+          document.querySelector('.placeholder.list').style.display = "none";
+          document.querySelector('.list-content-wrapper').style.display = "block";
+
+          var foo = document.querySelectorAll('.list-item-img');
+
+          for(var i = 0; i < foo.length; i++) {
+            var randomTimeout = Math.floor(Math.random() * 15) * 20;
+
+            ((eye) => {
+              setTimeout(() => {
+                foo[eye].innerHTML = `
+                  <div class="placeholder smallPulse">
+                    <div class="spinner-wrapper">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                        <circle class="solid-circle" cx="24" cy="24" r="8" />
+                      </svg>
+                    </div>
+                  </div>`;
+              },randomTimeout);
+            })(i)
+          }
+        }, 1500);
+      });
+    </script>
+
+  </head>
+  <body>
+    <div class="prototype-wrapper">
+
+      <div class="list-wrapper">
+        <div id="staticLogoDefault" class="list placeholder staticLogo">
+          <div class="spinner-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <g class="spinner">
+                <circle class="spinner-seg" id="spinner-seg-1" cx="24" cy="24" r="22" />
+                <circle class="spinner-seg" id="spinner-seg-2" cx="24" cy="24" r="22" />
+                <circle class="spinner-seg" id="spinner-seg-3" cx="24" cy="24" r="22" />
+                <circle class="spinner-seg" id="spinner-seg-4" cx="24" cy="24" r="22" />
+              </g>
+              <circle class="solid-circle" cx="24" cy="24" r="12" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="list-content-wrapper">
+          <div class="list-item">
+            <div class="list-item-img">
+
+            </div>
+            <div class="list-item-name">Apple</div>
+            <div class="list-item-price">$0.79</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Banana</div>
+            <div class="list-item-price">$0.88</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Melon</div>
+            <div class="list-item-price">$1.29</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Kumquat</div>
+            <div class="list-item-price">$3.50</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Pickle</div>
+            <div class="list-item-price">$1.12</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Fruit Salad</div>
+            <div class="list-item-price">$16.25</div>
+          </div>
+          <div class="list-item">
+            <div class="list-item-img"></div>
+            <div class="list-item-name">Passionfruit</div>
+            <div class="list-item-price">$4.79</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

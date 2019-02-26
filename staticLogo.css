@@ -32,20 +32,26 @@
     animation: fade-in 0.8s ease-in 0.6s;
     animation-fill-mode: forwards; }
 
-.staticLogo.placeholder.img-placeholder .spinner-wrapper {
+.staticLogo.placeholder.img-placeholder .spinner-wrapper,
+.placeholder.img-placeholder-ig .spinner-wrapper {
   margin-left: -36px;
   margin-top: -36px;
   width: 72px;
   height: 72px; }
-.staticLogo.placeholder.img-placeholder .solid-circle {
-  opacity: 0;
-  transform-origin: 50% 50%;
-  fill: rgba(0, 0, 0, 0.6);
-  stroke: none;
-  animation: default-logo-enter 0.8s ease-in 0.6s;
-  animation-fill-mode: forwards; }
-.staticLogo.placeholder.img-placeholder .spinner-seg {
-  stroke: #fafafa; }
+  .staticLogo.placeholder.img-placeholder .spinner-wrapper svg .solid-circle,
+  .placeholder.img-placeholder-ig .spinner-wrapper svg .solid-circle {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    fill: rgba(0, 0, 0, 0.6);
+    stroke: none;
+    animation: default-logo-enter 0.8s ease-in 0.6s;
+    animation-fill-mode: forwards; }
+  .staticLogo.placeholder.img-placeholder .spinner-wrapper svg .spinner-seg,
+  .placeholder.img-placeholder-ig .spinner-wrapper svg .spinner-seg {
+    stroke: #fafafa; }
+  .staticLogo.placeholder.img-placeholder .spinner-wrapper svg .spinner-logo,
+  .placeholder.img-placeholder-ig .spinner-wrapper svg .spinner-logo {
+    fill: #fafafa; }
 
 .staticLogo.placeholder .spinner-wrapper svg .spinner-logo {
   opacity: 0;

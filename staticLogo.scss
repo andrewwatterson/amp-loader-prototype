@@ -67,26 +67,33 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
   }
 }
 
-.staticLogo.placeholder.img-placeholder {
+.staticLogo.placeholder.img-placeholder,
+.placeholder.img-placeholder-ig, {
 
   .spinner-wrapper {
     margin-left: -1 * ($imgPlaceholderViewbox / 2);
     margin-top: -1 * ($imgPlaceholderViewbox / 2);
     width: $imgPlaceholderViewbox;
     height: $imgPlaceholderViewbox;
-  }
 
-  .solid-circle {
-    opacity: 0;
-    transform-origin: 50% 50%;
-    fill: rgba(0,0,0,.6);
-    stroke: none;
-    animation:  default-logo-enter $logoEnterTiming;
-    animation-fill-mode: forwards;
-  }
+    svg {
+      .solid-circle {
+        opacity: 0;
+        transform-origin: 50% 50%;
+        fill: rgba(0,0,0,.6);
+        stroke: none;
+        animation:  default-logo-enter $logoEnterTiming;
+        animation-fill-mode: forwards;
+      }
 
-  .spinner-seg {
-    stroke: #fafafa;
+      .spinner-seg {
+        stroke: #fafafa;
+      }
+
+      .spinner-logo {
+        fill: #fafafa;
+      }
+    }
   }
 }
 

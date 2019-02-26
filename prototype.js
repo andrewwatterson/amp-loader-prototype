@@ -21,8 +21,18 @@ var prototypes = {
   },
   imagePlaceholderDefault: {
     topFrameId: "twitterTopFrame",
-    contentId: "twitterContent",
+    contentId: "videoContent",
     loaderId: "imagePlaceholderDefault"
+  },
+  imagePlaceholderInstagram: {
+    topFrameId: "twitterTopFrame",
+    contentId: "instagramContent",
+    loaderId: "imagePlaceholderInstagram"
+  },
+  imagePlaceholderInstagramLogo: {
+    topFrameId: "twitterTopFrame",
+    contentId: "instagramContent",
+    loaderId: "imagePlaceholderInstagramLogo"
   },
   staticLogoAd: {
     topFrameId: "twitterTopFrame",

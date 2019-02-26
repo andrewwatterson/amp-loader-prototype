@@ -1,0 +1,118 @@
+@mixin flex-column($justify: flex-start, $align: stretch) {
+  @include flex-parent(flex, column, $justify, $align);
+}
+
+@mixin flex-row($justify: space-between, $align: center) {
+  @include flex-parent(flex, row, $justify, $align);
+}
+
+@mixin flex-parent($display: flex, $direction: row, $justify: space-between, $align: center) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin static-child($basis: auto) {
+  flex: 0 0 $basis;
+}
+
+@mixin dynamic-child($basis: auto) {
+  flex: 1 1 $basis;
+}
+
+.prototype-wrapper .list-wrapper {
+
+  padding: 20px;
+
+  .list.placeholder {
+    display: block;
+    border: none;
+    height: 480px;
+  }
+
+  .list-content-wrapper {
+    position: absolute;
+    height: 480px;
+    width: 320px;
+    display: none;
+
+    .list-item {
+
+      @include flex-row();
+      font-size: 14px;
+      margin-bottom: 8px;
+
+      .list-item-img {
+        @include static-child(96px);
+        height: 60px;
+        background-color: #fafafa;
+        margin-right: 16px;
+        position: relative;
+      }
+
+      .list-item-name {
+        font-weight: bold;
+        line-height: 60px;
+        @include dynamic-child();
+      }
+
+      .list-item-price {
+        font-weight: bold;
+        text-align: right;
+        font-weight: 200;
+        @include static-child(100px);
+      }
+    }
+  }
+}
+
+$viewboxSize: 48px;
+
+.placeholder.smallPulse {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: 0px;
+  min-height: 0px;
+  border: none;
+
+  .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1 * ($viewboxSize / 2);
+    margin-top: -1 * ($viewboxSize / 2);
+    width: $viewboxSize;
+    height: $viewboxSize;
+  }
+
+  .solid-circle {
+    opacity: 0;
+    fill: #aaa;
+    animation:
+      small-circle-enter .4s ease-in .8s,
+      small-pulse .8s linear 2s infinite;
+    animation-fill-mode: forwards;
+    transform-origin: 50% 50%;
+  }
+}
+
+@keyframes small-circle-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes small-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

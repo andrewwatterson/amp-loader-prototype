@@ -1,0 +1,74 @@
+.prototype-wrapper .list-wrapper {
+  padding: 20px; }
+  .prototype-wrapper .list-wrapper .list.placeholder {
+    display: block;
+    border: none;
+    height: 480px; }
+  .prototype-wrapper .list-wrapper .list-content-wrapper {
+    position: absolute;
+    height: 480px;
+    width: 320px;
+    display: none; }
+    .prototype-wrapper .list-wrapper .list-content-wrapper .list-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 8px; }
+      .prototype-wrapper .list-wrapper .list-content-wrapper .list-item .list-item-img {
+        flex: 0 0 96px;
+        height: 60px;
+        background-color: #fafafa;
+        margin-right: 16px;
+        position: relative; }
+      .prototype-wrapper .list-wrapper .list-content-wrapper .list-item .list-item-name {
+        font-weight: bold;
+        line-height: 60px;
+        flex: 1 1 auto; }
+      .prototype-wrapper .list-wrapper .list-content-wrapper .list-item .list-item-price {
+        font-weight: bold;
+        text-align: right;
+        font-weight: 200;
+        flex: 0 0 100px; }
+
+.placeholder.smallPulse {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: 0px;
+  min-height: 0px;
+  border: none; }
+  .placeholder.smallPulse .spinner-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -24px;
+    margin-top: -24px;
+    width: 48px;
+    height: 48px; }
+  .placeholder.smallPulse .solid-circle {
+    opacity: 0;
+    fill: #aaa;
+    animation: small-circle-enter .4s ease-in .8s, small-pulse .8s linear 2s infinite;
+    animation-fill-mode: forwards;
+    transform-origin: 50% 50%; }
+
+@keyframes small-circle-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@keyframes small-pulse {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.2); }
+  100% {
+    transform: scale(1); } }
+
+/*# sourceMappingURL=list.css.map */

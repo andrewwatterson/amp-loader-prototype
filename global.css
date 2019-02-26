@@ -64,7 +64,15 @@ body {
   position: relative; }
 
 .img-placeholder {
-  background-image: url("./images/img-placeholder.png"); }
+  background-image: url("./images/video-placeholder.png");
+  background-size: 320px 180px;
+  min-height: 180px; }
+
+.img-placeholder-ig {
+  background-image: url("./images/instagram-placeholder.png");
+  background-size: 540px 540px;
+  background-position: center center;
+  min-height: 540px; }
 
 .prototype-wrapper {
   width: 400px;
