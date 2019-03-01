@@ -1,0 +1,246 @@
+//*************************/
+//       Dimensions       */
+//*************************/
+
+$coordinateSpaceX: 120px;
+$coordinateSpaceY: 120px;
+
+$instagramViewbox: 112px;
+$defaultViewbox: 72px;
+$smallViewbox: 48px;
+
+$spinnerWidth: 1.5px;
+
+$smallSpinnerDiam: 26;
+$defaultSpinnerDiam: 44;
+$largeSpinnerDiam: 84;
+
+@function circum($diam) { @return $diam * 3.1415926535898; }
+
+
+//*************************/
+//    Animation Timing    */
+//*************************/
+
+$initialDelay: .6s;
+
+$logoEnter: .8s;
+$logoEnterTiming: $logoEnter ease-in $initialDelay;
+
+$spinnerEnter: .8s;
+$spinnerEnterDelay: $initialDelay + $logoEnter + .4s;
+$spinnerEnterTiming: $spinnerEnter ease-in $spinnerEnterDelay;
+
+$defaultLogoExit: .8s;
+$defaultLogoExitDelay: $spinnerEnterDelay;
+$defaultLogoExitTiming: $defaultLogoExit ease-out $defaultLogoExitDelay;
+
+$inertialFirst: .6s;
+$inertialFirstDelay: $spinnerEnterDelay + $spinnerEnter + .2s;
+$inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay;
+
+$inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
+$inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
+
+
+.i-amphtml-loading-placeholder {
+  background-color: #f8f8f8;
+  position: relative;
+
+  // prototype only
+  width: 100%;
+  height: 400px;
+}
+
+.i-amphtml-loading {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -1 * ($defaultViewbox / 2);
+  margin-top: -1 * ($defaultViewbox / 2);
+  width: $defaultViewbox;
+  height: $defaultViewbox;
+
+  .i-amphtml-loading-spinner-segment {
+    fill: transparent;
+    stroke: #aaa;
+    stroke-width: $spinnerWidth;
+    stroke-dasharray: (circum($defaultSpinnerDiam) / 4) (circum($defaultSpinnerDiam) * .75);
+    stroke-dashoffset: circum($defaultSpinnerDiam) * .375;
+  }
+
+  &.i-amphtml-loading-content-logo:not(.i-amphtml-loading-overlay) {
+    .i-amphtml-loading-circle { display: none; }
+  }
+
+  .i-amphtml-loading-circle {
+    opacity: 0;
+    fill: #aaa;
+    animation:  i-amphtml-loading-scale-and-fade-in $logoEnterTiming,
+                i-amphtml-fade-out $defaultLogoExitTiming;
+  }
+
+  .i-amphtml-loading-logo {
+    opacity: 0;
+    fill: #aaaaaa;
+    animation:  i-amphtml-fade-in $logoEnterTiming;
+  }
+
+  .i-amphtml-loading-spinner {
+    opacity: 0;
+    animation: i-amphtml-fade-in $spinnerEnterTiming;
+  }
+
+  #i-amphtml-loading-spinner-segment-1 {
+    transform: rotate(90deg);
+    animation:
+      i-amphtml-loading-first-spin-1 $inertialFirstTiming,
+      i-amphtml-loading-spin-1 $inertialSpinTiming;
+  }
+  #i-amphtml-loading-spinner-segment-2 {
+    transform: rotate(180deg);
+    animation:
+      i-amphtml-loading-first-spin-2 $inertialFirstTiming,
+      i-amphtml-loading-spin-2 $inertialSpinTiming;
+  }
+  #i-amphtml-loading-spinner-segment-3 {
+    transform: rotate(270deg);
+    animation:
+      i-amphtml-loading-first-spin-3 $inertialFirstTiming,
+      i-amphtml-loading-spin-3 $inertialSpinTiming;
+  }
+  #i-amphtml-loading-spinner-segment-4 {
+    animation:
+      i-amphtml-loading-first-spin-4 $inertialFirstTiming;
+  }
+}
+
+.i-amphtml-loading-small {
+  margin-left: -1 * ($smallViewbox / 2);
+  margin-top: -1 * ($smallViewbox / 2);
+  width: $smallViewbox;
+  height: $smallViewbox;
+
+  .i-amphtml-loading-spinner-segment {
+    stroke-dasharray: (circum($smallSpinnerDiam) / 4) (circum($smallSpinnerDiam) * .75);
+    stroke-dashoffset: circum($smallSpinnerDiam) * .375;
+  }
+}
+
+.i-amphtml-loading-large {
+  margin-left: -1 * ($instagramViewbox / 2);
+  margin-top: -1 * ($instagramViewbox / 2);
+  width: $instagramViewbox;
+  height: $instagramViewbox;
+
+  .i-amphtml-loading-spinner-segment {
+    stroke-dasharray: (circum($largeSpinnerDiam) / 4) (circum($largeSpinnerDiam) * .75);
+    stroke-dashoffset: circum($largeSpinnerDiam) * .375;
+  }
+}
+
+// content logo specific
+.i-amphtml-loading-twitter {
+  .i-amphtml-loading-spinner-segment { stroke: #1DA1F2; }
+  .i-amphtml-loading-logo { fill: #1DA1F2; }
+}
+
+.i-amphtml-loading-pinterest {
+  .i-amphtml-loading-spinner-segment { stroke: #E60019; }
+  .i-amphtml-loading-logo { fill: #E60019; }
+}
+
+.i-amphtml-loading-facebook {
+  .i-amphtml-loading-spinner-segment { stroke: #4267B2; }
+  .i-amphtml-fb-logo-outline { fill: #4267B2; }
+  .i-amphtml-fb-logo-f { fill: #ffffff; }
+}
+
+.i-amphtml-loading-ad {
+  .i-amphtml-loading-logo { fill: #888888; }
+}
+
+// this needs to be after the content logo colors
+// or we need to goose the specificity somehow
+.i-amphtml-loading-overlay {
+  .i-amphtml-loading-circle {
+    fill: rgba(0,0,0,.6);
+    animation: i-amphtml-loading-scale-and-fade-in $logoEnterTiming;
+  }
+  .i-amphtml-loading-spinner-segment { stroke: #fafafa; }
+  .i-amphtml-loading-logo, .i-amphtml-fb-logo-outline { fill: #ffffff; }
+  .i-amphtml-fb-logo-f { display: none; }
+}
+
+// this has to be last because the animation property will reset
+// animation-fill-mode to its default of 'none'
+.i-amphtml-loading {
+  .i-amphtml-loading-spinner,
+  #i-amphtml-loading-spinner-segment-1,
+  #i-amphtml-loading-spinner-segment-2,
+  #i-amphtml-loading-spinner-segment-3,
+  #i-amphtml-loading-spinner-segment-4,
+  .i-amphtml-loading-logo,
+  .i-amphtml-loading-circle {
+    // not sure why the usual 50% 50% doesn't work, but it has something
+    // to do with the fact that we're using weird viewboxes
+    transform-origin: ($coordinateSpaceX / 2) ($coordinateSpaceY / 2);
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes i-amphtml-loading-scale-and-fade-in {
+  0% {  opacity: 0;
+        transform: scale(0); }
+  50% { transform: scale(1); }
+  100% { opacity: 1; }
+}
+
+@keyframes i-amphtml-fade-in {
+  0% {  opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes i-amphtml-fade-out {
+  0% {  opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes i-amphtml-loading-spin-1 {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(90deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-spin-2 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-spin-3 {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-first-spin-1 {
+  0% { transform: rotate(90deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-first-spin-2 {
+  0% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-first-spin-3 {
+  0% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes i-amphtml-loading-first-spin-4 {
+  0% { transform: rotate(0deg); }
+  99% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0; }
+}

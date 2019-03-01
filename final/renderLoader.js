@@ -1,28 +1,79 @@
-function renderLoader(size, logo) {
+function renderLoader(size, logo, imgPlaceholder) {
 
-  let viewbox = "0 0 0 0";
-  if(size === 'small') { viewbox = "36 36 48 48"; }
-  else if(size === 'large' && logo === 'instagram') { viewbox = "4 4 112 112"; }
-  else { viewbox = "24 24 72 72" }
+  let dimensions = {
+    default: {
+      viewbox: "24 24 72 72",
+      spinnerRadius: 22,
+      overlayRadius: 36
+    },
+    small: {
+      viewbox: "36 36 48 48",
+      spinnerRadius: 13,
+      overlayRadius: 24,
+      sizeClass: 'i-amphtml-loading-small'
+    },
+    large: {
+      viewbox: "4 4 112 112",
+      spinnerRadius: 42,
+      overlayRadius: 56,
+      sizeClass: 'i-amphtml-loading-large'
+    }
+  }
+
+  let defaultLogoRadius = 12;
+
+  let d = dimensions.default;
+
+  if(size === 'small') { d = dimensions.small; }
+  else if(size === 'large') {
+    d = dimensions.large;
+  }
+
+  // logo special cases
+  if(logo === 'pinterest' && imgPlaceholder) {
+    logo = 'default';
+  }
+  if(size === 'large') {
+    logo = 'instagram';
+  }
 
   let loaderHTML = `
-    <div id="staticLogoTwitter" class="placeholder staticLogo">
-      <div class="spinner-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-          <g class="spinner">
-            <circle class="spinner-seg" id="spinner-seg-1" cx="24" cy="24" r="22" />
-            <circle class="spinner-seg" id="spinner-seg-2" cx="24" cy="24" r="22" />
-            <circle class="spinner-seg" id="spinner-seg-3" cx="24" cy="24" r="22" />
-            <circle class="spinner-seg" id="spinner-seg-4" cx="24" cy="24" r="22" />
+    <div class="i-amphtml-loading-placeholder">
+      <div class="i-amphtml-loading
+                  ${d.sizeClass ? d.sizeClass : ''}
+                  ${imgPlaceholder ? 'i-amphtml-loading-overlay' : ''}
+                  ${logo !== 'default' ? 'i-amphtml-loading-content-logo' : ''}
+                  ${logo !== 'default' ? `i-amphtml-loading-${logo}` : ''}
+      ">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="${d.viewbox}">
+          <circle class="i-amphtml-loading-circle" cx="60" cy="60" r="${imgPlaceholder ? d.overlayRadius : defaultLogoRadius}" />
+          <g class="i-amphtml-loading-spinner">
+            <circle class="i-amphtml-loading-spinner-segment" id="i-amphtml-loading-spinner-segment-1" cx="60" cy="60" r="${d.spinnerRadius}" />
+            <circle class="i-amphtml-loading-spinner-segment" id="i-amphtml-loading-spinner-segment-2" cx="60" cy="60" r="${d.spinnerRadius}" />
+            <circle class="i-amphtml-loading-spinner-segment" id="i-amphtml-loading-spinner-segment-3" cx="60" cy="60" r="${d.spinnerRadius}" />
+            <circle class="i-amphtml-loading-spinner-segment" id="i-amphtml-loading-spinner-segment-4" cx="60" cy="60" r="${d.spinnerRadius}" />
           </g>
+          ${logo !== 'default' ? renderLogo(logo) : ''}
         </svg>
       </div>
     </div>
   `;
 
+  return htmlToDom(loaderHTML);
+}
+
+function htmlToDom(htmlString) {
   var template = document.createElement('template');
-  template.innerHTML = html;
-  return template.content.childNodes;
+  template.innerHTML = htmlString.trim();
+  return template.content.firstChild;
+}
+
+function renderLogo(logo) {
+  return `
+    <g class="i-amphtml-loading-logo">
+      ${logos[logo]}
+    </g>
+  `;
 }
 
 let logos = {
@@ -51,7 +102,7 @@ let logos = {
     'facebook': `<path class="i-amphtml-fb-logo-outline" d="M68.9,50H51.1c-0.6,0-1.1,0.5-1.1,1.1v17.8c0,0.6,0.5,1.1,1.1,1.1c0,0,0,0,0,0h9.6v-7.7h-2.6v-3h2.6V57
                   	c0-2.6,1.6-4,3.9-4c0.8,0,1.6,0,2.3,0.1v2.7h-1.6c-1.3,0-1.5,0.6-1.5,1.5v1.9h3l-0.4,3h-2.6V70h5.1c0.6,0,1.1-0.5,1.1-1.1l0,0V51.1
                   	C70,50.5,69.5,50,68.9,50C68.9,50,68.9,50,68.9,50z"/>
-                  <path class="i-amphtml-fb-logo-outline" d="M63.8,70v-7.7h2.6l0.4-3h-3v-1.9c0-0.9,0.2-1.5,1.5-1.5h1.6v-2.7c-0.8-0.1-1.6-0.1-2.3-0.1
+                  <path class="i-amphtml-fb-logo-f" d="M63.8,70v-7.7h2.6l0.4-3h-3v-1.9c0-0.9,0.2-1.5,1.5-1.5h1.6v-2.7c-0.8-0.1-1.6-0.1-2.3-0.1
                   	c-2.3,0-3.9,1.4-3.9,4v2.2h-2.6v3h2.6V70H63.8z"/>`,
     'pinterest': `<path d="M60,50c-5.52,0-9.99,4.47-9.99,9.99c0,4.24,2.63,7.85,6.35,9.31c-0.09-0.79-0.16-2.01,0.03-2.87
                   	c0.18-0.78,1.17-4.97,1.17-4.97s-0.3-0.6-0.3-1.48c0-1.39,0.81-2.43,1.81-2.43c0.86,0,1.27,0.64,1.27,1.41
@@ -59,5 +110,7 @@ let logos = {
                   	c-2.85,0-4.51,2.13-4.51,4.33c0,0.86,0.33,1.78,0.74,2.28c0.08,0.1,0.09,0.19,0.07,0.29c-0.07,0.31-0.25,1-0.28,1.13
                   	c-0.04,0.18-0.15,0.22-0.34,0.13c-1.25-0.58-2.03-2.4-2.03-3.87c0-3.15,2.29-6.04,6.6-6.04c3.46,0,6.16,2.47,6.16,5.77
                   	c0,3.45-2.17,6.22-5.18,6.22c-1.01,0-1.97-0.53-2.29-1.15c0,0-0.5,1.91-0.62,2.38c-0.22,0.87-0.83,1.96-1.24,2.62
-                  	c0.94,0.29,1.92,0.44,2.96,0.44c5.52,0,9.99-4.47,9.99-9.99C69.99,54.47,65.52,50,60,50z"/>`
+                  	c0.94,0.29,1.92,0.44,2.96,0.44c5.52,0,9.99-4.47,9.99-9.99C69.99,54.47,65.52,50,60,50z"/>`,
+    'video': `<path d="M65,58.5V55c0-0.5-0.4-1-1-1H51c-0.5,0-1,0.5-1,1v10c0,0.6,0.5,1,1,1h13c0.6,0,1-0.4,1-1v-3.5l5,4v-11L65,58.5z"/>`,
+    'ad': `<div class='i-amphtml-ad-badge'>Ad</div>`
 };

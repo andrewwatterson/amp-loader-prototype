@@ -1,15 +1,30 @@
 <html>
   <head>
     <link rel="stylesheet" href="./amp-loader.css" />
-    <script type="text/javascript" src="./final.js"></script>
+    <script type="text/javascript" src="./renderLoader.js"></script>
+    <script type="text/javascript" src="./prototype.js"></script>
   </head>
   <body>
-    <div class="selector-wrapper">
-      <select name="spinner-selector" id="spinner-selector">
-      </select>
-    </div>
     <div class="prototype-wrapper">
-
+      <div class="selector-wrapper">
+        <select id="component">
+          <option value="default">default</option>
+          <option value="ad">ad</option>
+          <option value="video">video</option>
+          <option value="facebook">facebook</option>
+          <option value="twitter">twitter</option>
+          <option value="pinterest">pinterest</option>
+        </select>
+        <select id="size">
+          <option value="default">default</option>
+          <option value="small">small</option>
+          <option value="large">large</option>
+        </select>
+        <input type="checkbox" id="overlay" />
+        <label for="overlay">Image Placeholder</label>
+        <input type="checkbox" id="failToLoad" />
+        <label for="failToLoad">Fail to Load</label>
+      </div>
       <div class="content-wrapper">
 
 
