@@ -96,7 +96,7 @@ $viewboxSize: 48px;
 
   .spinner {
     opacity: 0;
-    animation: fade-in .4s ease-in .8s;
+    animation: fade-in .8s ease-in .6s;
     animation-fill-mode: forwards;
   }
 
@@ -120,8 +120,8 @@ $viewboxSize: 48px;
     display: none;
   }
 
-  $inertialFirstTiming: .6s cubic-bezier(.5,0,.8,1) 1.2s;
-  $inertialSpinTiming: 1.2s linear 1.8s infinite;
+  $inertialFirstTiming: .6s cubic-bezier(.5,0,.8,1) 1.4s;
+  $inertialSpinTiming: 1.2s linear 2s infinite;
 
   #spinner-seg-1 {
     transform: rotate(90deg);

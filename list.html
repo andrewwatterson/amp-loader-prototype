@@ -42,7 +42,7 @@
 
                 foo[eye].style.backgroundImage = 'url(\'./images/'+bgImages[eye]+'\')';
 
-                var randomResolve = Math.floor(Math.random() * 15) * 200;
+                var randomResolve = Math.floor(Math.random() * 15) * 2000;
 
                 setTimeout(() => {
                   foo[eye].innerHTML = '';
@@ -50,7 +50,7 @@
               },randomTimeout);
             })(i)
           }
-        }, 3500);
+        }, 500);
       });
     </script>
 
