@@ -4,26 +4,87 @@
     <script type="text/javascript" src="./renderLoader.js"></script>
     <script type="text/javascript" src="./prototype.js"></script>
   </head>
+
+  <style type="text/css">
+    body {
+      margin: 0; padding: 0;
+    }
+
+    .i-amphtml-loading-placeholder {
+      width: 375px;
+      height: 296px;
+    }
+
+    .i-amphtml-loading-large-placeholder {
+      width: 100%;
+      height: 700px;
+    }
+
+    .i-amphtml-loading-small-placeholder {
+      height: 50px;
+      width: 320px;
+    }
+
+    .i-amphtml-loading-placeholder.img-placeholder {
+      background-size: cover;
+      background-position: center;
+      background-image: url('https://picsum.photos/800?random');
+    }
+
+    .selector-wrapper {
+      width: 100%;
+      background-color: #005AF0;
+      padding: 16px;
+      font-family: "Noto Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .amp-logo { display: inline-block; vertical-align: middle; }
+    #logo { width:24px; height: 24px; }
+
+    .selector-wrapper > * { display: inline-block; vertical-align: middle; margin-right: 10px; }
+
+    label { font-size: 12px; line-height: 12px; }
+
+    .content-wrapper {
+      padding: 20px;
+    }
+  </style>
+
   <body>
     <div class="prototype-wrapper">
       <div class="selector-wrapper">
-        <select id="component">
-          <option value="default">default</option>
-          <option value="ad">ad</option>
-          <option value="video">video</option>
-          <option value="facebook">facebook</option>
-          <option value="twitter">twitter</option>
-          <option value="pinterest">pinterest</option>
-        </select>
-        <select id="size">
-          <option value="default">default</option>
-          <option value="small">small</option>
-          <option value="large">large</option>
-        </select>
-        <input type="checkbox" id="overlay" />
-        <label for="overlay">Image Placeholder</label>
-        <input type="checkbox" id="failToLoad" />
-        <label for="failToLoad">Fail to Load</label>
+        <div class="amp-logo">
+          <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><g fill="none" fill-rule="evenodd"><path fill="#005AF0" d="M0 15c0 8.284 6.716 15 15 15 8.285 0 15-6.716 15-15 0-8.284-6.715-15-15-15C6.716 0 0 6.716 0 15z"></path><path fill="#FFF" fill-rule="nonzero" d="M13.85 24.098h-1.14l1.128-6.823-3.49.005h-.05a.57.57 0 0 1-.568-.569c0-.135.125-.363.125-.363l6.272-10.46 1.16.005-1.156 6.834 3.508-.004h.056c.314 0 .569.254.569.568 0 .128-.05.24-.121.335L13.85 24.098zM15 0C6.716 0 0 6.716 0 15c0 8.284 6.716 15 15 15 8.285 0 15-6.716 15-15 0-8.284-6.715-15-15-15z"></path></g></svg>
+        </div>
+        <div>
+          <label for="component">Component</label>
+          <select id="component">
+            <option value="default">default</option>
+            <option value="ad">ad</option>
+            <option value="video">video</option>
+            <option value="facebook">facebook</option>
+            <option value="twitter">twitter</option>
+            <option value="pinterest">pinterest</option>
+          </select>
+        </div>
+        <div>
+          <label for="size">Size</label>
+          <select id="size">
+            <option value="default">default</option>
+            <option value="small">small</option>
+            <option value="large">large</option>
+          </select>
+        </div>
+        <div>
+          <input type="checkbox" id="overlay" />
+          <label for="overlay">Image Placeholder</label>
+        </div>
+        <div>
+          <input type="checkbox" id="failToLoad" />
+          <label for="failToLoad">Fail to Load</label>
+        </div>
       </div>
       <div class="content-wrapper">
 

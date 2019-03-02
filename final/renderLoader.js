@@ -8,8 +8,8 @@ function renderLoader(size, logo, imgPlaceholder) {
     },
     small: {
       viewbox: "36 36 48 48",
-      spinnerRadius: 13,
-      overlayRadius: 24,
+      spinnerRadius: 8,
+      overlayRadius: 16,
       sizeClass: 'i-amphtml-loading-small'
     },
     large: {
@@ -30,6 +30,9 @@ function renderLoader(size, logo, imgPlaceholder) {
   }
 
   // logo special cases
+  if(size === 'small' && logo !== 'ad') {
+    logo = 'default';
+  }
   if(logo === 'pinterest' && imgPlaceholder) {
     logo = 'default';
   }
@@ -37,8 +40,14 @@ function renderLoader(size, logo, imgPlaceholder) {
     logo = 'instagram';
   }
 
+  // Additional classes on -loading-placeholder are for prototype purposes
+  // Feel free to remove them
+
   let loaderHTML = `
-    <div class="i-amphtml-loading-placeholder">
+    <div class="i-amphtml-loading-placeholder
+                ${d.sizeClass ? d.sizeClass+'-placeholder' : ''}
+                ${imgPlaceholder ? 'img-placeholder' : ''}
+    ">
       <div class="i-amphtml-loading
                   ${d.sizeClass ? d.sizeClass : ''}
                   ${imgPlaceholder ? 'i-amphtml-loading-overlay' : ''}
@@ -112,5 +121,7 @@ let logos = {
                   	c0,3.45-2.17,6.22-5.18,6.22c-1.01,0-1.97-0.53-2.29-1.15c0,0-0.5,1.91-0.62,2.38c-0.22,0.87-0.83,1.96-1.24,2.62
                   	c0.94,0.29,1.92,0.44,2.96,0.44c5.52,0,9.99-4.47,9.99-9.99C69.99,54.47,65.52,50,60,50z"/>`,
     'video': `<path d="M65,58.5V55c0-0.5-0.4-1-1-1H51c-0.5,0-1,0.5-1,1v10c0,0.6,0.5,1,1,1h13c0.6,0,1-0.4,1-1v-3.5l5,4v-11L65,58.5z"/>`,
-    'ad': `<div class='i-amphtml-ad-badge'>Ad</div>`
+    'ad': `<path d="M68,54c0.55,0,1,0.45,1,1v10c0,0.55-0.45,1-1,1H52c-0.55,0-1-0.45-1-1V55c0-0.55,0.45-1,1-1H68 M68,53H52c-1.1,0-2,0.9-2,2
+  		      v10c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V55C70,53.9,69.1,53,68,53L68,53z"/>
+          <text class="i-amphtml-ad-badge-label" transform="matrix(1 0 0 1 53.2812 64.167)">Ad</text>`
 };

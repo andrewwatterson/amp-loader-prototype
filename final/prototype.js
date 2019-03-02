@@ -26,6 +26,12 @@ window.addEventListener('load', function() {
     state.imgPlaceholder = overlaySelector.checked;
     applyState(state);
   });
+
+  document.querySelector('#failToLoad').addEventListener('change', function() {
+    var failSelector = document.querySelector('#failToLoad');
+    state.failToLoad = failSelector.checked;
+    applyState(state);
+  });
 });
 
 function applyState(state) {
@@ -34,5 +40,12 @@ function applyState(state) {
   existingLoader && existingLoader.remove();
 
   var loader = renderLoader(state.size, state.logo, state.imgPlaceholder);
+
+  if(state.failToLoad) {
+    setTimeout(function() {
+      loader.className += " i-amphtml-loading-finished";
+    },8000);
+  }
+
   document.querySelector('.content-wrapper').appendChild(loader);
 }

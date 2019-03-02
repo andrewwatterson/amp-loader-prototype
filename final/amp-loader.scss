@@ -11,7 +11,7 @@ $smallViewbox: 48px;
 
 $spinnerWidth: 1.5px;
 
-$smallSpinnerDiam: 26;
+$smallSpinnerDiam: 16;
 $defaultSpinnerDiam: 44;
 $largeSpinnerDiam: 84;
 
@@ -31,6 +31,8 @@ $spinnerEnter: .8s;
 $spinnerEnterDelay: $initialDelay + $logoEnter + .4s;
 $spinnerEnterTiming: $spinnerEnter ease-in $spinnerEnterDelay;
 
+$spinnerExitTiming: .4s ease-out;
+
 $defaultLogoExit: .8s;
 $defaultLogoExitDelay: $spinnerEnterDelay;
 $defaultLogoExitTiming: $defaultLogoExit ease-out $defaultLogoExitDelay;
@@ -42,14 +44,17 @@ $inertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $inertialFirstDelay
 $inertialSpinDelay: $inertialFirstDelay + $inertialFirst;
 $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
 
+$smallSpinnerEnterTiming: $spinnerEnter ease-in $initialDelay;
+
+$smallInertialFirstDelay: $initialDelay + $spinnerEnter;
+$smallInertialFirstTiming: $inertialFirst cubic-bezier(.5,0,.8,1) $smallInertialFirstDelay;
+
+$smallInertialSpinDelay: $smallInertialFirstDelay + $inertialFirst;
+$smallInertialSpinTiming: 1.2s linear $smallInertialSpinDelay infinite;
 
 .i-amphtml-loading-placeholder {
   background-color: #f8f8f8;
   position: relative;
-
-  // prototype only
-  width: 100%;
-  height: 400px;
 }
 
 .i-amphtml-loading {
@@ -68,51 +73,39 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
     stroke-width: $spinnerWidth;
     stroke-dasharray: (circum($defaultSpinnerDiam) / 4) (circum($defaultSpinnerDiam) * .75);
     stroke-dashoffset: circum($defaultSpinnerDiam) * .375;
+    animation: none $inertialFirstTiming, none $inertialSpinTiming;
   }
 
-  &.i-amphtml-loading-content-logo:not(.i-amphtml-loading-overlay) {
+  &.i-amphtml-loading-content-logo:not(.i-amphtml-loading-overlay),
+  &.i-amphtml-loading-small:not(.i-amphtml-loading-overlay) {
     .i-amphtml-loading-circle { display: none; }
   }
 
-  .i-amphtml-loading-circle {
+  .i-amphtml-loading-circle,
+  .i-amphtml-loading-logo,
+  .i-amphtml-loading-spinner {
     opacity: 0;
-    fill: #aaa;
+    fill: #aaaaaa;
+  }
+
+  .i-amphtml-loading-circle {
     animation:  i-amphtml-loading-scale-and-fade-in $logoEnterTiming,
                 i-amphtml-fade-out $defaultLogoExitTiming;
   }
 
   .i-amphtml-loading-logo {
-    opacity: 0;
-    fill: #aaaaaa;
     animation:  i-amphtml-fade-in $logoEnterTiming;
   }
 
   .i-amphtml-loading-spinner {
-    opacity: 0;
+    fill: none;
     animation: i-amphtml-fade-in $spinnerEnterTiming;
   }
+}
 
-  #i-amphtml-loading-spinner-segment-1 {
-    transform: rotate(90deg);
-    animation:
-      i-amphtml-loading-first-spin-1 $inertialFirstTiming,
-      i-amphtml-loading-spin-1 $inertialSpinTiming;
-  }
-  #i-amphtml-loading-spinner-segment-2 {
-    transform: rotate(180deg);
-    animation:
-      i-amphtml-loading-first-spin-2 $inertialFirstTiming,
-      i-amphtml-loading-spin-2 $inertialSpinTiming;
-  }
-  #i-amphtml-loading-spinner-segment-3 {
-    transform: rotate(270deg);
-    animation:
-      i-amphtml-loading-first-spin-3 $inertialFirstTiming,
-      i-amphtml-loading-spin-3 $inertialSpinTiming;
-  }
-  #i-amphtml-loading-spinner-segment-4 {
-    animation:
-      i-amphtml-loading-first-spin-4 $inertialFirstTiming;
+.i-amphtml-loading-finished {
+  .i-amphtml-loading-spinner {
+    animation: i-amphtml-fade-out $spinnerExitTiming;
   }
 }
 
@@ -122,9 +115,18 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
   width: $smallViewbox;
   height: $smallViewbox;
 
+  .i-amphtml-loading-spinner {
+    animation: i-amphtml-fade-in $smallSpinnerEnterTiming;
+  }
+
   .i-amphtml-loading-spinner-segment {
     stroke-dasharray: (circum($smallSpinnerDiam) / 4) (circum($smallSpinnerDiam) * .75);
     stroke-dashoffset: circum($smallSpinnerDiam) * .375;
+    animation: none $smallInertialFirstTiming, none $smallInertialSpinTiming;
+  }
+
+  &.i-amphtml-loading-content-logo {
+    .i-amphtml-loading-spinner { display: none; }
   }
 }
 
@@ -159,6 +161,7 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
 
 .i-amphtml-loading-ad {
   .i-amphtml-loading-logo { fill: #888888; }
+  .i-amphtml-ad-badge-label { font-size: 11px; font-family: sans-serif; }
 }
 
 // this needs to be after the content logo colors
@@ -173,21 +176,37 @@ $inertialSpinTiming: 1.2s linear $inertialSpinDelay infinite;
   .i-amphtml-fb-logo-f { display: none; }
 }
 
+// this has to come after the timing declarations for -loading and -loading-small
+#i-amphtml-loading-spinner-segment-1 {
+  transform: rotate(90deg);
+  animation-name: i-amphtml-loading-first-spin-1, i-amphtml-loading-spin-1;
+}
+#i-amphtml-loading-spinner-segment-2 {
+  transform: rotate(180deg);
+  animation-name: i-amphtml-loading-first-spin-2, i-amphtml-loading-spin-2;
+}
+#i-amphtml-loading-spinner-segment-3 {
+  transform: rotate(270deg);
+  animation-name: i-amphtml-loading-first-spin-3, i-amphtml-loading-spin-3;
+}
+#i-amphtml-loading-spinner-segment-4 {
+  animation-name: i-amphtml-loading-first-spin-4, none;
+}
+
 // this has to be last because the animation property will reset
 // animation-fill-mode to its default of 'none'
-.i-amphtml-loading {
-  .i-amphtml-loading-spinner,
-  #i-amphtml-loading-spinner-segment-1,
-  #i-amphtml-loading-spinner-segment-2,
-  #i-amphtml-loading-spinner-segment-3,
-  #i-amphtml-loading-spinner-segment-4,
-  .i-amphtml-loading-logo,
-  .i-amphtml-loading-circle {
-    // not sure why the usual 50% 50% doesn't work, but it has something
-    // to do with the fact that we're using weird viewboxes
-    transform-origin: ($coordinateSpaceX / 2) ($coordinateSpaceY / 2);
-    animation-fill-mode: forwards;
-  }
+
+.i-amphtml-loading .i-amphtml-loading-spinner,
+#i-amphtml-loading-spinner-segment-1,
+#i-amphtml-loading-spinner-segment-2,
+#i-amphtml-loading-spinner-segment-3,
+#i-amphtml-loading-spinner-segment-4,
+.i-amphtml-loading .i-amphtml-loading-logo,
+.i-amphtml-loading .i-amphtml-loading-circle {
+  // not sure why the usual 50% 50% doesn't work, but it has something
+  // to do with the fact that we're using weird viewboxes
+  transform-origin: ($coordinateSpaceX / 2) ($coordinateSpaceY / 2);
+  animation-fill-mode: forwards;
 }
 
 @keyframes i-amphtml-loading-scale-and-fade-in {
