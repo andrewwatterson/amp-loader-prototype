@@ -30,7 +30,7 @@ function renderLoader(size, logo, imgPlaceholder) {
   }
 
   // logo special cases
-  if(size === 'small' && logo !== 'ad') {
+  if(size === 'small') {
     logo = 'default';
   }
   if(logo === 'pinterest' && imgPlaceholder) {
