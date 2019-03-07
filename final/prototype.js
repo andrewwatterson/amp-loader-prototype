@@ -1,11 +1,22 @@
+var defaultComponent = "default";
+var defaultSize = "default";
+var defaultOverlay = false;
+var defaultToolbar = true;
+
+var urlParams = new URLSearchParams(window.location.search);
+
 var state = {
-  size: 'default',
-  logo: 'default',
-  imgPlaceholder: false,
+  size: urlParams.get('size') || defaultSize,
+  logo: urlParams.get('component') || defaultComponent,
+  imgPlaceholder: urlParams.get('overlay') == true || defaultOverlay,
   failToLoad: false
 };
 
 window.addEventListener('load', function() {
+
+  setUpSelector('component',components, state.logo);
+  setUpSelector('size',sizes, state.size);
+  setUpCheckbox('overlay', state.imgPlaceholder);
 
   applyState(state);
 
@@ -32,6 +43,8 @@ window.addEventListener('load', function() {
     state.failToLoad = failSelector.checked;
     applyState(state);
   });
+
+  if(urlParams.get('toolbar') && urlParams.get('toolbar') != true) { document.querySelector('.selector-wrapper').style.display = 'none'; }
 });
 
 function applyState(state) {
@@ -48,4 +61,38 @@ function applyState(state) {
   }
 
   document.querySelector('.content-wrapper').appendChild(loader);
+}
+
+var components = [
+  'default',
+  'ad',
+  'video',
+  'facebook',
+  'twitter',
+  'pinterest'
+];
+
+var sizes = [
+  'small',
+  'default',
+  'large'
+];
+
+function setUpSelector(selectorId, options, selected) {
+  var selector = document.getElementById(selectorId);
+  selector.addEventListener('change', function(evt) { reactToSelector(evt.target); });
+  for(s in options) {
+    if(options.hasOwnProperty(s)) {
+      var option = document.createElement('option');
+      option.appendChild(document.createTextNode(options[s]));
+      option.setAttribute('value', options[s]);
+      (options[s] === selected) && option.setAttribute('selected', true);
+      selector.appendChild(option);
+    }
+  }
+}
+
+function setUpCheckbox(checkboxId, selected) {
+  var checkbox = document.getElementById(checkboxId);
+  selected && checkbox.setAttribute('checked', selected);
 }

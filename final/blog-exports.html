@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./amp-loader.css" />
+    <script type="text/javascript" src="./renderLoader.js"></script>
+
+    <script type="text/javascript">
+
+      let loaders = [
+        {
+          size: "default",
+          logo: "default",
+          imgPlaceholder: false
+        },
+        {
+          size: "small",
+          logo: "default",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "default",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "video",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "ad",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "twitter",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "pinterest",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "facebook",
+          imgPlaceholder: false
+        },
+        {
+          size: "default",
+          logo: "default",
+          imgPlaceholder: true
+        },
+      ];
+
+      window.addEventListener('load', function() {
+        for(let l in loaders) {
+          var state = loaders[l];
+          var loader = renderLoader(state.size, state.logo, state.imgPlaceholder);
+          document.querySelector('.content-wrapper').appendChild(loader);
+        }
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var theN = urlParams.get('n');
+
+        if(theN) {
+          if(theN > 2) {
+            document.querySelector('.i-amphtml-loading-placeholder:nth-child(1)').style.display = "none";
+            document.querySelector('.i-amphtml-loading-placeholder:nth-child(2)').style.display = "none";
+          } else {
+            var elements = document.querySelectorAll('.i-amphtml-loading-placeholder:not(:nth-child(' + theN + '))');
+            for(let el in elements) {
+              elements[el].style.display = 'none';
+            }
+          }
+        }
+      });
+    </script>
+
+  </head>
+
+  <style type="text/css">
+    body {
+      margin: 0; padding: 0;
+    }
+
+    .i-amphtml-loading-placeholder {
+      width: 320px;
+      height: 120px;
+      margin-bottom: 40px;
+    }
+
+    .i-amphtml-loading-placeholder:not(:nth-child(1)):not(:nth-child(2)) {
+      display: inline-block;
+      width: 80px;
+      vertical-align: middle;
+      background-color: white;
+    }
+
+    .i-amphtml-loading-placeholder.img-placeholder { background-image: url('../picsum.jpg') !important; }
+
+    .i-amphtml-loading-placeholder:nth-child(3) { margin-right: 40px; }
+    .i-amphtml-loading-placeholder:nth-child(9) { margin-right: 60px; }
+    .i-amphtml-loading-placeholder:nth-child(10) { width: 150px !important; }
+
+    .i-amphtml-loading-small-placeholder {
+      height: 50px;
+      width: 320px;
+    }
+
+    .i-amphtml-loading-placeholder.img-placeholder {
+      background-size: cover;
+      background-position: center;
+      background-image: url('https://picsum.photos/800?random');
+    }
+
+    .content-wrapper {
+      padding: 20px;
+    }
+
+    #dots .i-amphtml-loader {
+      position: absolute;
+      display: block;
+      height: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      transform-origin: 50% 50%;
+      white-space: nowrap; }
+    #dots .i-amphtml-loader .i-amphtml-loader-dot {
+      animation: i-amphtml-loader-dots 2s infinite; }
+    #dots .i-amphtml-loader-dot {
+      position: relative;
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      margin: 2px;
+      border-radius: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      will-change: transform; }
+    #dots .i-amphtml-loader .i-amphtml-loader-dot:nth-child(1) {
+      animation-delay: 0s; }
+    #dots .i-amphtml-loader .i-amphtml-loader-dot:nth-child(2) {
+      animation-delay: .1s; }
+    #dots .i-amphtml-loader .i-amphtml-loader-dot:nth-child(3) {
+      animation-delay: .2s; }
+    @keyframes i-amphtml-loader-dots {
+      0%, 100% {
+        transform: scale(0.7);
+        background-color: rgba(0, 0, 0, 0.3); }
+      50% {
+        transform: scale(0.8);
+        background-color: rgba(0, 0, 0, 0.5); } }
+  </style>
+
+  <body>
+    <div class="content-wrapper">
+
+      <div id="dots" class="i-amphtml-loading-placeholder">
+        <div class="i-amphtml-loader">
+          <div class="i-amphtml-loader-dot"></div>
+          <div class="i-amphtml-loader-dot"></div>
+          <div class="i-amphtml-loader-dot"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
